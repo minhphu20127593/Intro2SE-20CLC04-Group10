@@ -1,0 +1,9 @@
+com\group10\TalesOfWonder\entity\Image.class
+com\group10\TalesOfWonder\entity\Chapter.class
+com\group10\TalesOfWonder\entity\Vote.class
+com\group10\TalesOfWonder\entity\Message.class
+com\group10\TalesOfWonder\entity\Role.class
+com\group10\TalesOfWonder\entity\Author.class
+com\group10\TalesOfWonder\entity\Comic.class
+com\group10\TalesOfWonder\entity\User.class
+com\group10\TalesOfWonder\entity\Comment.class
