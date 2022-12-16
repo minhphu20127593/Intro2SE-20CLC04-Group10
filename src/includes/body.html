@@ -1,18 +1,264 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script>
-        $(function () {
-            $("#header").load("./includes/header.html");
-            $("#footer").load("./includes/footer.html");
-        });
-    </script>
-</head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales of Wonder</title>
 
-<body class="container-fluid">
-    <div id="header"></div>
-    <!--Remaining section-->
-    <div></div>
-    <div id="footer" class="mt-auto"></div>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!--css link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--script-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header class="header">
+
+    <li href="#" class="logo" style="font-family:KumarOne;size:50px;color:aliceblue">TALES OF WONDER</li>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#about">History</a>
+        <a href="#menu">Category</a>
+        <a href="#products">Rating</a>
+        <a href="#review">Donate</a>
+        <a href="#contact">Help</a>
+        <a href="#blogs">Account</a>
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./1.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Kimetsu no Yaiba</hc:\Users\14253\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench\workbench.html3>
+              
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="./2.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Jujutsu Kaisen</h3> 
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="./3.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Solo Leveling</h3>
+            </div>
+             
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- menu section starts  -->
+
+<section class="menu" id="menu">
+
+    <h1 class="heading"> top <span>reading</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="./manga_1.jpeg" alt="">
+            <h3>Martial Art Peek</h3>
+            <div class="chapter">Chapter 2873</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_2.jpeg" alt="">
+            <h3>The Great Butler is the Demon Emperor</h3>
+            <div class="chapter">Chapter 344</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_3.jpeg" alt="">
+            <h3>God of Evolving Grace</h3>
+            <div class="chapter">Chapter 143</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_4.jpeg" alt="">
+            <h3>Fallen evil</h3>
+            <div class="chapter">Chapter 135</div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- menu section ends -->
+
+<section class="products" id="products">
+
+    <h1 class="heading"> latest <span>updates</span> </h1>
+
+    <div class="box-container">
+        <div class="box">
+            <img src="./manga_1.jpeg" alt="">
+            <h3>Martial Art Peek</h3>
+            <div class="chapter">Chapter 2873</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_2.jpeg" alt="">
+            <h3>The Great Butler is the Demon Emperor</h3>
+            <div class="chapter">Chapter 344</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_3.jpeg" alt="">
+            <h3>God of Evolving Grace</h3>
+            <div class="chapter">Chapter 143</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_4.jpeg" alt="">
+            <h3>Fallen evil</h3>
+            <div class="chapter">Chapter 135</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_5.jpeg" alt="">
+            <h3>Kimetsu no Yaiba</h3>
+            <div class="chapter">Chapter 240</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_6.jpeg" alt="">
+            <h3>Jujutsu Kaisen</h3>
+            <div class="chapter">Chapter 205</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_7.jpeg" alt="">
+            <h3>I came from the game world</h3>
+            <div class="chapter">Chapter 106</div>
+        </div>
+
+        <div class="box">
+            <img src="./manga_8.jpeg" alt="">
+            <h3>Great king forgive me</h3>
+            <div class="chapter">Chapter 630</div>
+        </div>
+    </div>
+
+</section>
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span>contact</span> us </h1>
+
+    <div class="row">
+
+        <iframe class="map" src="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+Khoa+h%E1%BB%8Dc+T%E1%BB%B1+nhi%C3%AAn+-+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+Qu%E1%BB%91c+gia+TP.HCM/@10.7626693,106.6793185,15.85z/data=!4m21!1m15!4m14!1m6!1m2!1s0x31157a4d736a1e5f:0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!2m2!1d108.277199!2d14.058324!1m6!1m2!1s0x3be7b63aceef0c69:0x2aa80cf2287dfa3b!2sJogeshwari+West+Mumbai,+Maharashtra+400047!2m2!1d72.8427707!2d19.1438971!3m4!1s0x31752f1c06f4e1dd:0x43900f1d4539a3d!8m2!3d10.7628356!4d106.6824824" allowfullscreen="" loading="lazy"></iframe>
+
+        <form action="">
+            
+            <div class="inputBox">
+                <span class="fas fa-user"></span>
+                <input type="text" placeholder="name">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-envelope"></span>
+                <input type="email" placeholder="email">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-phone"></span>
+                <input type="number" placeholder="number">
+            </div>
+            <input type="submit" value="contact now" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-pinterest"></a>
+    </div>
+
+    <div class="links">
+        <a href="#">home</a>
+        <a href="#">history</a>
+        <a href="#">category</a>
+        <a href="#">rating</a>
+        <a href="#">donate</a>
+        <a href="#">help</a>
+        <a href="#">account</a>
+    </div>
+
+    <div class="credit">Copyright by <span>Tales of Wonder</span> | all rights reserved</div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
 </body>
 </html>
