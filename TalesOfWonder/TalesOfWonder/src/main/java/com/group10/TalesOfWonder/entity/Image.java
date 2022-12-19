@@ -14,4 +14,42 @@ public class Image {
     @ManyToOne
     @JoinColumn(name="chapter_id", nullable=false)
     private Chapter chapter;
+
+    public Image(Integer orderInChapter, String pathImage, Chapter chapter) {
+        this.orderInChapter = orderInChapter;
+        this.pathImage = pathImage;
+        this.chapter = chapter;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setOrderInChapter(Integer orderInChapter) {
+        this.orderInChapter = orderInChapter;
+    }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getOrderInChapter() {
+        return orderInChapter;
+    }
+
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public Chapter getChapter() {
+        return chapter;
+    }
 }

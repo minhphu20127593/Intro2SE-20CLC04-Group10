@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Chapter</title>
 
-    <link rel="stylesheet" href="assets/css/main/app.css">
-    <link rel="stylesheet" href="assets/css/main/app-dark.css">
-    <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
-    <link rel="stylesheet" href="assets/extensions/choices.js/public/assets/styles/choices.css">
+    <link rel="stylesheet" th:href="@{/assets/css/main/app.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main/app-dark.css}">
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/assets/extensions/choices.js/public/assets/styles/choices.css}">
+    <script th:src="@{/assets/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/js/app.js}"></script>
+    <script th:src="@{/assets/extensions/choices.js/public/assets/scripts/choices.js}"></script>
+    <script th:src="@{/assets/js/pages/form-element-select.js}"></script>
 </head>
 
 <body>
@@ -111,17 +115,29 @@
                                         </div>
                                         <div class="card-content">
                                             <div class="card-body">
-                                                <form class="form form-vertical">
+                                                <form th:action="@{/chapter/save}" method="post" th:object="${chapter}" enctype="multipart/form-data"  class="form form-vertical">
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <div class="form-group">
                                                                     <label for="full-name-vertical"> Name</label>
-                                                                    <input type="text" id="Full-name-vertical" class="form-control" name="fname"
-                                                                           placeholder="Full Name">
+                                                                    <input th:field="*{name}" type="text" id="Full-name-vertical" class="form-control" name="fname"
+                                                                           placeholder="Name">
                                                                 </div>
                                                             </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label>Comic</label>
+                                                                    <div class="form-group form-check">
 
+                                                                        <th:block th:each="comicofUser: ${comics}">
+                                                                            <input type="radio"  th:text="${comicofUser.name}" th:field="*{comic.id}"
+                                                                                   th:value="${comicofUser.id}" class="m-2" />
+                                                                        </th:block>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
                                                             <div class="col-12">
                                                                 <div class="form-group">
@@ -130,7 +146,7 @@
                                                                     <div class="input-group mb-3">
 
                                                                         <div class="input-group-text">
-                                                                            <input class="form-check-input" type="radio" value="" aria-label="Radio button for following text input">
+                                                                            <input th:field="*{enable}" class="form-check-input" type="radio" value="true" aria-label="Radio button for following text input">
                                                                         </div>
                                                                         <label class="input-group-text">Enable to reader to view</label>
                                                                     </div>
@@ -144,8 +160,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 d-flex justify-content-end">
-                                                                <button type="submit"
-                                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                <input type="submit" class="btn btn-primary me-1 mb-1" value="Save">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -177,10 +192,6 @@
                 </section>
             </div>
         </div>
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script src="assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
-        <script src="assets/js/pages/form-element-select.js"></script>
     </div>
 </div>
 </body>
