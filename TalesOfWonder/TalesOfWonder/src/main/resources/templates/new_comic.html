@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Truyện</title>
+
+    <link rel="stylesheet" th:href="@{/assets/css/main/app.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main/app-dark.css}">
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/assets/extensions/choices.js/public/assets/styles/choices.css}">
+    <script th:src="@{/assets/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/js/app.js}"></script>
+    <script th:src="@{/assets/extensions/choices.js/public/assets/scripts/choices.js}"></script>
+    <script th:src="@{/assets/js/pages/form-element-select.js}"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="index.html"><img th:src="@{/images/logo.jpg}" alt="Logo" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-title">Comic</li>
+
+
+                        <li class="sidebar-item active ">
+                            <a href="form-layout.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>Add new Comic</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="form-layout.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>Mange Comic</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div id="main">
+                <header class="mb-3">
+                    <a href="#" class="burger-btn d-block d-xl-none">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+                </header>
+
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-12 col-md-6 order-md-1 order-last">
+                                <h3>Add new Comic</h3>
+                                <p class="text-subtitle text-muted">Enter infomation about your comic</p>
+                            </div>
+                            <div class="col-12 col-md-6 order-md-2 order-first">
+                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Add new Comic</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Horizontal form layout section start -->
+                    <section id="basic-horizontal-layouts">
+                        <div class="row match-height">
+
+
+
+                            <!-- Basic Vertical form layout section start -->
+                            <section id="basic-vertical-layouts">
+                                <div class="row match-height">
+                                    <div class="col-md-12 col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Enter as much as info as posible</h4>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <form th:action="@{/comic/save}" method="post" enctype="multipart/form-data" 
+                                                    class="form form-vertical" th:object="${comic}" >
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="full-name-vertical">Full Name</label>
+                                                                    <input type="text" id="Full-name-vertical" class="form-control" name="fname" th:field="*{name}"
+                                                                        placeholder="Full Name">
+                                                                </div>
+                                                            </div>   
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="another-id-vertical">Another Name (in origin language)</label>
+                                                                    <input type="text" id="email-id-vertical" th:field="*{anotherName}"
+                                                                        class="form-control" name="othername-id" placeholder="Another Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="another-id-vertical">Tác giả</label>
+                                                                    <input th:field="*{authors}" type="text" id="email-id-vertical"  class="form-control" name="othername-id"  placeholder="Tác giả">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="status-vertical">Status</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                                                                        <select class="form-select" th:field="*{status}"  id="inputGroupSelect01">
+                                                                            <option selected value="In progress">In progress</option>
+                                                                            <option value="Done">Done</option>
+                                                                        </select>
+                                                                    </div>                                                                   
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="password-vertical">Thể loại</label>
+                                                                    <div class="form-group form-check">
+
+                                                                        <th:block th:each="category: ${categories}">
+                                                                            <input type="checkbox" th:field="*{categories}"  th:text="${category.name}"
+                                                                                th:value="${category.id}" class="m-2" />
+                                                                            - <small>[[${category.description}]]</small>
+                                                                            </br>
+                                                                        </th:block>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class='form-group'>
+                                                                    <label for="status-vertical">Mô tả</label>
+                                                                    <textarea th:field="*{description}" class="form-control"  id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" th:field="*{creator}">
+                                                            <div class="col-12">
+                                                                <input type="file" id="fileImage" name="image" accept="image/png, image/jpeg" class="mb-2"/>
+                                                                <img th:src="@{${comic.getPhotosImagePath}}" alt="Photos review" id="thumbnail" class="img-fluid">
+                                                            </div>
+                                                                <div class="col-12 d-flex justify-content-end">
+                                                                <input type="submit" class="btn btn-primary me-1 mb-1" value="Save">
+                                                                
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                            <!-- // Basic Vertical form layout section end -->
+                        </div>
+
+                        <footer>
+                            <div class="footer clearfix mb-0 text-muted">
+                                <div class="float-start">
+                                    <p>2022 &copy; Tales of Wonders</p>
+                                </div>
+                                <div class="float-end">
+                                    <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                            href="https://saugi.me">Saugi</a></p>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

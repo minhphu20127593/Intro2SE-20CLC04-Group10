@@ -11,14 +11,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 125,nullable = false,unique = true)
+    @Column(length = 300,nullable = false,unique = true)
     private String email;
-    @Column(name = "first_name",length = 64,nullable = false,columnDefinition = "nvarchar")
-    private String firstname;
-    @Column(name = "last_name",length = 64,nullable = false,columnDefinition = "nvarchar")
-    private String lastname;
+    @Column(name = "full_name",length = 500,nullable = false,columnDefinition = "nvarchar")
+    private String fullName;
 
-    @Column(length = 64,nullable = false)
+    @Column(length = 400,nullable = false)
     private String password;
     private boolean enable;
     private String photos;
@@ -42,10 +40,9 @@ public class User {
     )
     public Set<Comic> comicsFollow = new HashSet<>();
 
-    public User(String email, String firstname, String lastname, String password, boolean enable, Role role) {
+    public User(String email, String fullName, String password, boolean enable, Role role) {
         this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.fullName = fullName;
         this.password = password;
         this.enable = enable;
         this.role = role;
@@ -53,20 +50,21 @@ public class User {
         this.registerDate = new Date();
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+    @Transient
+    public String getPhotosImagePath() {
+        if (id == null || photos == null) return  "/images/user.png";
+
+        return "/user-photos/" + this.id + "/" + this.photos;
+    }
     public Integer getId() {
         return id;
     }
 
     public String getEmail() {
         return email;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
     }
 
     public String getPassword() {
@@ -93,16 +91,12 @@ public class User {
         this.id = id;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public void setPassword(String password) {
@@ -125,16 +119,17 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", enable=" + enable +
-                ", registerDate=" + registerDate +
-                ", role=" + role +
-                '}';
+    public User(String email, String fullName, String password, boolean enable, Date registerDate, Role role) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.enable = enable;
+        this.registerDate = registerDate;
+        this.role = role;
+    }
+
+    public User() {
+        this.registerDate = new Date();
+        this.enable = true;
     }
 }
