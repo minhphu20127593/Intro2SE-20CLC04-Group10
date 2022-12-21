@@ -18,6 +18,9 @@ public class ComicService {
         List<Category> categories = (List<Category>) categoryRepository.findAll();
         return categories;
     }
+    public Comic getComicByID(Integer id) {
+        return comicRepository.findById(id).get();
+    }
     public Comic save(Comic comic) {
         if (comic.getId() == null) {
             comic.setCountView(0);

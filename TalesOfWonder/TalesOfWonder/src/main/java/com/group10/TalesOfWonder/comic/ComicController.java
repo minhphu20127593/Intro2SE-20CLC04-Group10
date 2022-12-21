@@ -34,31 +34,13 @@ public class ComicController {
         String email = loggedUser.getUsername();
         User user = userService.getByEmail(email);
         Comic comic = new Comic();
-        comic.setName("Okela");
         comic.setCreator(user);
         model.addAttribute("comic",comic);
         return "new_comic";
     }
-//    @PostMapping("/comic/save")
-//    public String saveComic(Comic comic, RedirectAttributes redirectAttributes,
-//                           @RequestParam("poster") MultipartFile multipartFile) throws IOException {
-//        if (multipartFile.isEmpty() == false) {
-//            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//            comic.setPoster(fileName);
-//            Comic comicSave = comicService.save(comic);
-//            String uploadDir = "comic-poster/" + comicSave.getId();
-//            FileUploadUtil.cleanDir(uploadDir);
-//            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-//
-//        } else {
-//            if (comic.getPoster()==null || comic.getPoster().isEmpty()) comic.setPoster(null);
-//            comicService.save(comic);
-//        }
-//        redirectAttributes.addFlashAttribute("message","User Comic successfully");
-//        return "redirect:/comics";
-//    }
+
     @PostMapping("/comic/save")
-    public String saveUser(@ModelAttribute Comic comic, RedirectAttributes redirectAttributes,@RequestParam("image")MultipartFile multipartFile) throws IOException {
+    public String saveComic(@ModelAttribute Comic comic, RedirectAttributes redirectAttributes,@RequestParam("image")MultipartFile multipartFile) throws IOException {
 
         if (multipartFile.isEmpty() == false) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());

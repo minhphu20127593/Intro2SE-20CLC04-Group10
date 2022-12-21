@@ -25,14 +25,14 @@ public class User {
     @JoinColumn(name="role_id", nullable=false)
     private Role role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_comicsPublish",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
     public Set<Comic> comicsPublish = new HashSet<>();
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_comicsFollow",
             joinColumns = @JoinColumn(name = "user_id"),
