@@ -41,6 +41,7 @@ public class Comic {
     @JoinColumn(name="creator_id", nullable=false)
     private User creator;
     private String poster;
+    private Boolean enable;
     public Comic(String name, Date datePost, String status, String description, String anotherName, Set<Category> categories, String authors) {
         this.name = name;
         this.datePost = datePost;
@@ -64,6 +65,14 @@ public class Comic {
     }
     public String getPoster() {
         return poster;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public Boolean getEnable() {
+        return enable;
     }
 
     public void setPoster(String poster) {
