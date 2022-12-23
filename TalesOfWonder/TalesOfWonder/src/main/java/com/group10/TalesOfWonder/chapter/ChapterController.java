@@ -59,13 +59,13 @@ public class ChapterController {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             Image image = new Image(count,fileName,chapterSave);
             images.add(image);
-            String uploadDir = "comic-poster/" + chapterSave.getId();
+            String uploadDir = "comic-image/" + chapterSave.getId();
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             count++;
         }
         imageService.saveAllImage(images);
         redirectAttributes.addFlashAttribute("message","User Comic successfully");
-        return "redirect:/comics";
+        return "redirect:/chapters";
     }
 }

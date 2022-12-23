@@ -11,10 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,8 +32,18 @@ public class ComicController {
         User user = userService.getByEmail(email);
         Comic comic = new Comic();
         comic.setCreator(user);
+        comic.setEnable(false);
         model.addAttribute("comic",comic);
         return "new_comic";
+    }
+
+    @GetMapping("/comic/listAll")
+    public String listAllComic(Model model,@AuthenticationPrincipal QAUserDetails loggedUser) {
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
+        List<Comic> comics = comicService.findAllComicByEmail(email);
+        model.addAttribute("comics",comics);
+        return "quanlytruyen";
     }
 
     @PostMapping("/comic/save")
@@ -56,5 +63,15 @@ public class ComicController {
         }
         redirectAttributes.addFlashAttribute("message","User Comic successfully");
         return "redirect:/comics";
+    }
+    @GetMapping("/comic/changestatus/{id}")
+    public String changeStatus(@PathVariable(name = "id") Integer id,Model model) {
+        Comic comic = comicService.getComicByID(id);
+        if (comic.getStatus().equals("In progress")) {
+            comic.setStatus("Done");
+        } else
+            comic.setStatus("In progress");
+        comicService.save(comic);
+        return "redirect:/comic/listAll";
     }
 }
