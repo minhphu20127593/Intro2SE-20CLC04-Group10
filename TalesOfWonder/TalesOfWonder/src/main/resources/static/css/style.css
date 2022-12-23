@@ -195,13 +195,15 @@ section {
 .carousel-caption {
     position: absolute;
     bottom: 5%;
-    left: -60%;
+    left: 0%;
+    right: 0%;
 }
 
 .carousel-caption2 {
     position: absolute;
-    bottom: 15%;
-    left: -23%;
+    bottom: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 .carousel-caption2 h1 {
@@ -214,7 +216,7 @@ section {
     background-repeat: no-repeat;
     width: auto;
     height: 100vh;
-    filter: brightness(90%);
+    filter: brightness(70%);
 }
 
 .menu .box-container {
