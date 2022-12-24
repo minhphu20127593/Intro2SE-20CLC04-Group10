@@ -1,3 +1,5 @@
+*/application.properties
+*.imi
 TalesOfWonder/.idea/
 .idea/.gitignore
 .idea/compiler.xml
@@ -115,3 +117,5 @@ TalesOfWonder/TalesOfWonder/src/main/resources/application.properties
 TalesOfWonder/TalesOfWonder/target/classes/application.properties
 TalesOfWonder/TalesOfWonder/src/main/resources/application.properties
 TalesOfWonder/TalesOfWonder/src/main/resources/application.properties
+TalesOfWonder/TalesOfWonder/target/classes/application.properties
+TalesOfWonder/TalesOfWonder/target/classes/com/group10/TalesOfWonder/entity/*.class
