@@ -159,6 +159,7 @@
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" th:field="*{creator}">
+                                                            <input type="hidden" th:field="*{enable}">
                                                             <div class="col-12">
                                                                 <input type="file" id="fileImage" name="image" accept="image/png, image/jpeg" class="mb-2"/>
                                                                 <img th:src="@{${comic.getPhotosImagePath}}" alt="Photos review" id="thumbnail" class="img-fluid">

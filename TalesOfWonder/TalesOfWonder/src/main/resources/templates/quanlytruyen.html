@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Chapter</title>
-
     <link rel="stylesheet" th:href="@{/assets/css/main/app.css}">
     <link rel="stylesheet" th:href="@{/assets/css/main/app-dark.css}">
     <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.svg}" type="image/x-icon">
@@ -13,10 +12,16 @@
     <link rel="stylesheet" th:href="@{/assets/extensions/choices.js/public/assets/styles/choices.css}">
     <script th:src="@{/assets/js/bootstrap.js}"></script>
     <script th:src="@{/assets/js/app.js}"></script>
+
+    <link rel="stylesheet" th:href="@{assets/extensions/simple-datatables/style.css}">
+    <link rel="stylesheet" th:href="@{assets/css/pages/simple-datatables.css}">
+    <script th:src="@{assets/extensions/simple-datatables/umd/simple-datatables.js}"></script>
+    <script th:src="@{assets/js/pages/simple-datatables.js}"></script>
     <script th:src="@{/assets/extensions/choices.js/public/assets/scripts/choices.js}"></script>
     <script th:src="@{/assets/js/pages/form-element-select.js}"></script>
     <link rel="stylesheet" th:href="@{assets/extensions/simple-datatables/style.css}">
     <link rel="stylesheet" th:href="@{assets/css/pages/simple-datatables.css}">
+
 </head>
 
 <body>
@@ -108,6 +113,20 @@
                         All your comic
                     </div>
                     <div class="card-body">
+
+                        <form th:action="@{/comic/listAll/1}" class="form form-horizontal">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-2 form-group">
+                                        <label>Keyword</label>
+                                    
+                                        <input type="text" id="first-name" class="form-control" name="keyword" placeholder="Enter your keyword">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <table class="table table-striped" id="table1">
                             <thead>
                             <tr>
@@ -118,7 +137,6 @@
                                 <th>Date Post</th>
 
                                 <th>Last Modified</th>
-                                <th>Poster</th>
                                 <th>Status</th>
                                 <th>Active</th>
                                 <th>Delete</th>
@@ -135,7 +153,7 @@
                                 <td>[[${comic.countView}]]</td>
                                 <td>[[${comic.datePost}]]</td>
                                 <td>[[${comic.lastModified}]]</td>
-                                <td>[[${comic.getPhotosImagePath}]]</td>
+
                                 <td>
                                     <a th:href="@{'/comic/changestatus/'+${comic.id}}" class="badge bg-success">[[${comic.status}]]</a>
                                 </td>
@@ -153,6 +171,27 @@
                             </th:block>
 
                         </table>
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination pagination-primary">
+
+                                <li th:class="${currentPage == 1 ? 'page-item disabled' : 'page-item'}">
+                                    <a class="page-link" th:href="@{'/comic/listAll/1?sortField='+${sortField}+'&sortDir='+${sortDir}+${keyword==null ? '' : '&keyword='+keyword}}" >First</a>
+                                </li>
+                                <li th:class="${currentPage == 1 ? 'page-item disabled' : 'page-item'}">
+                                    <a class="page-link" th:href="@{'/comic/listAll/'+${currentPage!=1 ? (currentPage - 1) : 1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}+${keyword==null?'':'&keyword='+keyword}}" tabindex="-1">Previous</a>
+                                </li>
+                                <li th:class="${currentPage == i ? 'page-item active' : 'page-item'}" th:each="i : ${#numbers.sequence(1,totalPages)}">
+                                    <a class="page-link"  th:href="@{'/comic/listAll/'+${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}+${keyword==null?'':'&keyword='+keyword}}">[[${i}]]</a>
+                                </li>
+                                <li th:class="${currentPage == totalPages ? 'page-item disabled' : 'page-item'}">
+                                    <a class="page-link" th:href="@{'/comic/listAll/'+${currentPage!=totalPages ? (currentPage + 1) : totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}+${keyword==null?'':'&keyword='+keyword}}">Next</a>
+                                </li>
+                
+                                <li th:class="${currentPage == totalPages ? 'page-item disabled' : 'page-item'}">
+                                    <a class="page-link" th:href="@{'/comic/listAll/'+${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}+${keyword==null?'':'&keyword='+keyword}}">End</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
 
@@ -172,11 +211,6 @@
         </footer>
     </div>
 </div>
-<script src="assets/js/bootstrap.js"></script>
-<script src="assets/js/app.js"></script>
-
-<script th:src="@{assets/extensions/simple-datatables/umd/simple-datatables.js}"></script>
-<script th:src="@{assets/js/pages/simple-datatables.js}"></script>
 
 </body>
 

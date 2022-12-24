@@ -5,7 +5,7 @@ import com.group10.TalesOfWonder.entity.Comic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
 
 @Service
 public class ChapterService {
@@ -24,5 +24,16 @@ public class ChapterService {
         }
 
         return chapterRepository.save(chapter);
+    }
+    public List<Chapter> getListChapterOfAComic(Comic comic) {
+        return chapterRepository.findByComicID(comic.getId());
+    }
+    public Map<Integer,List<Chapter>> getListChapterOfComics(List<Comic> comics) {
+        Map<Integer,List<Chapter>> chapters = new HashMap<>();
+        for (Comic comic:comics) {
+            List<Chapter> chapterComic = chapterRepository.findByComicIDLimit(comic.getId(),3);
+            chapters.put(comic.getId(),chapterComic);
+        }
+        return chapters;
     }
 }

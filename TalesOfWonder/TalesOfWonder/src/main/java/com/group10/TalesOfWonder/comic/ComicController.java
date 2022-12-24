@@ -1,12 +1,17 @@
 package com.group10.TalesOfWonder.comic;
 
 import com.group10.TalesOfWonder.FileUploadUtil;
+import com.group10.TalesOfWonder.chapter.ChapterRepository;
+import com.group10.TalesOfWonder.chapter.ChapterService;
 import com.group10.TalesOfWonder.entity.Category;
+import com.group10.TalesOfWonder.entity.Chapter;
 import com.group10.TalesOfWonder.entity.Comic;
 import com.group10.TalesOfWonder.entity.User;
 import com.group10.TalesOfWonder.security.QAUserDetails;
 import com.group10.TalesOfWonder.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ComicController {
@@ -24,6 +30,8 @@ public class ComicController {
     public ComicService comicService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public ChapterService chapterService;
     @GetMapping("/comic/new_comic")
     public String newComic(Model model,@AuthenticationPrincipal QAUserDetails loggedUser) {
         List<Category> categories = comicService.findAllCategory();
@@ -36,13 +44,38 @@ public class ComicController {
         model.addAttribute("comic",comic);
         return "new_comic";
     }
-
     @GetMapping("/comic/listAll")
-    public String listAllComic(Model model,@AuthenticationPrincipal QAUserDetails loggedUser) {
+    public String getAllOfUser(Model model,@AuthenticationPrincipal QAUserDetails loggedUser) {
+        return listAllComic(model,loggedUser,1,"lastModified","DESC",null);
+    }
+    @GetMapping("/comic/listAll/{pageNum}")
+    public String listAllComic(Model model,@AuthenticationPrincipal QAUserDetails loggedUser,@PathVariable(name = "pageNum") int pageNum, @Param("sortField") String sortField, @Param("sortDir")
+            String sortDir, @Param("keyword") String keyword) {
+        sortField = sortDir == null ? "lastModified" : sortField;
+        sortDir = sortDir == null ? "DESC" : sortDir;
         String email = loggedUser.getUsername();
         User user = userService.getByEmail(email);
-        List<Comic> comics = comicService.findAllComicByEmail(email);
-        model.addAttribute("comics",comics);
+        Page<Comic> page = comicService.listByPageOfUser(pageNum,sortField,sortDir,keyword,user);
+        List<Comic> comicsList = page.getContent();
+        long startCount = (pageNum - 1)* ComicService.pageSizeSmall + 1;
+        long endCount = startCount + ComicService.pageSizeSmall - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        String opsortDir = sortDir.equals("asc")?"des":"asc";
+        System.out.println(opsortDir);
+        System.out.println("Pagenum = " + pageNum);
+        System.out.println("Total elements = " + page.getTotalElements());
+        System.out.println("Total pages = " + page.getTotalPages());
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",pageNum);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("comics",comicsList);
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDir",sortDir);
+        model.addAttribute("opsortDir",opsortDir);
+        model.addAttribute("keyword",keyword);
         return "quanlytruyen";
     }
 
@@ -62,7 +95,7 @@ public class ComicController {
             comicService.save(comic);
         }
         redirectAttributes.addFlashAttribute("message","User Comic successfully");
-        return "redirect:/comics";
+        return "redirect:/comic/listAll";
     }
     @GetMapping("/comic/changestatus/{id}")
     public String changeStatus(@PathVariable(name = "id") Integer id,Model model) {
@@ -74,4 +107,56 @@ public class ComicController {
         comicService.save(comic);
         return "redirect:/comic/listAll";
     }
+    @GetMapping("/")
+    public String loadMainPage(Model model) {
+        Page<Comic> page = comicService.listByPage(1,"lastModified","des",null);
+        List<Comic> comicListLatest = page.getContent();
+        Map<Integer,List<Chapter>> chaptersLatest = chapterService.getListChapterOfComics(comicListLatest);
+        page = comicService.listByPage(1,"countView","des",null);
+        List<Comic> comicsMostView = page.getContent();
+        Map<Integer,List<Chapter>> chaptersMostView = chapterService.getListChapterOfComics(comicsMostView);
+        long startCount = (1 - 1)* ComicService.pageSize + 1;
+        long endCount = startCount + ComicService.pageSize - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        System.out.println("Pagenum = " + 1);
+        System.out.println("Total elements = " + page.getTotalElements());
+        System.out.println("Total pages = " + page.getTotalPages());
+        model.addAttribute("listChaptersLatest",chaptersLatest);
+        model.addAttribute("listChaptersMostView",chaptersMostView);
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",1);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("listComicsLatest",comicListLatest);
+        model.addAttribute("listComicsMostView",comicsMostView);
+        return "index";
+    }
+//    @GetMapping("/{pageNum}")
+//    public String listByPage(@PathVariable(name = "pageNum") int pageNum, @Param("sortField") String sortField, @Param("sortDir")
+//            String sortDir, Model model, @Param("keyword") String keyword) {
+//        Page<Comic> page = comicService.listByPage(pageNum,sortField,sortDir,keyword);
+//        List<Comic> postsList = page.getContent();
+//        long startCount = (pageNum - 1)* ComicService.pageSize + 1;
+//        long endCount = startCount + ComicService.pageSize - 1;
+//        if (endCount > page.getTotalElements())
+//            endCount = page.getTotalElements();
+//        String opsortDir = sortDir.equals("asc")?"des":"asc";
+//        System.out.println(opsortDir);
+//        System.out.println("Pagenum = " + pageNum);
+//        System.out.println("Total elements = " + page.getTotalElements());
+//        System.out.println("Total pages = " + page.getTotalPages());
+//        model.addAttribute("startCount",startCount);
+//        model.addAttribute("endCount",endCount);
+//        model.addAttribute("currentPage",pageNum);
+//        model.addAttribute("totalItems",page.getTotalElements());
+//        model.addAttribute("totalPages",page.getTotalPages());
+//        model.addAttribute("listPosts",postsList);
+//        model.addAttribute("sortField",sortField);
+//        model.addAttribute("sortDir",sortDir);
+//        model.addAttribute("opsortDir",opsortDir);
+//        model.addAttribute("keyword",keyword);
+//        return "index";
+//    }
 }
