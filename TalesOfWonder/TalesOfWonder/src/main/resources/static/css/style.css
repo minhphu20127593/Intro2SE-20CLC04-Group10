@@ -226,13 +226,13 @@ section {
 }
 
 .menu .box-container .box {
-    padding: 5rem;
+    padding: 0rem;
     text-align: center;
     border: var(--border);
 }
 
 .menu .box-container .box img {
-    height: 10rem;
+    height: 40rem;
 }
 
 .menu .box-container .box h3 {
@@ -263,16 +263,16 @@ section {
 }
 
 .products .box-container .box {
-    padding: 5rem;
+    padding: 1.5rem;
     text-align: center;
     border: var(--border);
 }
 
 .products .box-container .box img {
-    height: 10rem;
+    height: 40rem;
 }
 
-.products .box-container .box h3 {
+.products .box-container .box textarea {
     color: #fff;
     font-size: 2rem;
     padding: 1rem 0;
@@ -294,6 +294,7 @@ section {
 }
 
 .contact .row {
+    margin-top: -50px;
     display: flex;
     background: var(--black);
     flex-wrap: wrap;
@@ -304,8 +305,8 @@ section {
     flex: 1 1 45rem;
     width: 100%;
     object-fit: cover;
-    padding: 80px 100px;
-    margin-top: -20px;
+    padding: 80px 10px;
+    margin-top: -10px;
 }
 
 .contact .row .address {
