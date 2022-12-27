@@ -63,6 +63,7 @@ section {
 .main-logo {
     width: 60%;
     margin-left: 35px;
+    z-index: 1;
 }
 
 .mini-bar {
@@ -99,7 +100,6 @@ section {
     justify-content: space-between;
     padding: 1.5rem 7%;
     border-bottom: var(--border);
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -182,10 +182,10 @@ section {
     top: -1%;
     left: -1%;
     width: 102%;
-    height: 108%;
+    height: 20%;
     float: left;
     opacity: 80%;
-    z-index: -1000;
+    z-index: 0;
 }
 
 .carousel-inner {
@@ -233,27 +233,27 @@ section {
 
 .menu .box-container .box img {
     height: 40rem;
+    width: 90%;
 }
 
 .menu .box-container .box h3 {
-    color: #fff;
-    font-size: 2rem;
+    color: #fff !important;
+    font-size: 2.5rem;
     padding: 1rem 0;
 }
 
 .menu .box-container .box .chapter {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     padding: .5rem 0;
 }
 
 
 .menu .box-container .box:hover {
-    background: #fff;
+    background: var(--main-color);
 }
 
 .menu .box-container .box:hover>* {
-    color: var(--black);
 }
 
 .products .box-container {
@@ -270,6 +270,7 @@ section {
 
 .products .box-container .box img {
     height: 40rem;
+    width: 90%;
 }
 
 .products .box-container .box textarea {
@@ -280,17 +281,22 @@ section {
 
 .products .box-container .box .chapter {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     padding: .5rem 0;
+}
+
+.products .box-container .box h3 {
+    color: #fff !important;
+    font-size: 2.5rem;
+    padding: 1rem 0;
 }
 
 
 .products .box-container .box:hover {
-    background: #fff;
+    background: var(--main-color);
 }
 
 .products .box-container .box:hover>* {
-    color: var(--black);
 }
 
 .contact .row {
