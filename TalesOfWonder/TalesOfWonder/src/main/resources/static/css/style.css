@@ -253,8 +253,6 @@ section {
     background: var(--main-color);
 }
 
-.menu .box-container .box:hover>* {
-}
 
 .products .box-container {
     display: grid;
@@ -294,9 +292,6 @@ section {
 
 .products .box-container .box:hover {
     background: var(--main-color);
-}
-
-.products .box-container .box:hover>* {
 }
 
 .contact .row {
@@ -435,7 +430,45 @@ section {
     color: var(--main-color);
 }
 
+.detail{
+    background: var(--bg);
+}
 
+.detail .slides .breadcrumb{
+    padding: 1rem 0;
+}
+
+.detail .slides .breadcrumb a{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#1e1e57;
+    border:var(--border);
+    margin:.3rem;
+    border-radius: 50%;
+}
+
+.detail .info h1{
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info .small {
+    font-size:1.5rem;
+    color: #fff;
+    text-align: center;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info p{
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: left;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
 
 
 
