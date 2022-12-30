@@ -25,6 +25,9 @@ public class ChapterService {
 
         return chapterRepository.save(chapter);
     }
+    public Chapter findChapterByID(int id) {
+        return chapterRepository.findById(id).get();
+    }
     public List<Chapter> getListChapterOfAComic(Comic comic) {
         return chapterRepository.findByComicID(comic.getId());
     }

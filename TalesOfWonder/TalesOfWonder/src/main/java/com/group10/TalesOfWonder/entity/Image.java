@@ -20,11 +20,14 @@ public class Image {
         this.pathImage = pathImage;
         this.chapter = chapter;
     }
+    public Image() {
+
+    }
     @Transient
     public String getPhotosImagePath() {
         if (id == null || pathImage == null) return  "/images/poster.png";
 
-        return "/comic-image/" + this.id + "/" + this.pathImage;
+        return "/comic-image/" + this.chapter.getId() + "/" + this.pathImage;
     }
     public void setId(Integer id) {
         this.id = id;
