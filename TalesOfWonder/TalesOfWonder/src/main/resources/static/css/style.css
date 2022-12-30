@@ -434,8 +434,13 @@ section {
     background: var(--bg);
 }
 
+.detail .slides{
+    background-color:#1e1e57;
+}
+
 .detail .slides .breadcrumb{
     padding: 1rem 0;
+    background-color: #1e1e57;
 }
 
 .detail .slides .breadcrumb a{
@@ -443,7 +448,7 @@ section {
     width: 5rem;
     line-height: 5rem;
     font-size: 2rem;
-    color:#1e1e57;
+    color:#fff;
     border:var(--border);
     margin:.3rem;
     border-radius: 50%;
@@ -457,7 +462,7 @@ section {
 }
 
 .detail .info .small {
-    font-size:1.5rem;
+    font-size:2rem;
     color: #fff;
     text-align: center;
     font-family: "Tahoma",sans-serif, "Helvetica", Arial;
@@ -468,6 +473,48 @@ section {
     color: #fff;
     text-align: left;
     font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info .grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #1e1e57;
+    padding: 10px;
+}
+
+.detail .info .grid-item{
+    background-color: #1e1e57;
+    padding: 20px;
+    font-size: 30px;
+    text-align: left;
+}
+
+.chapter h2{
+    font-size: 3rem;
+    color: #fff;
+    text-align: left;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.chapter .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #1e1e57;
+    padding: 10px;
+  }
+
+.chapter .grid-item {
+    background-color: #1e1e57;
+    padding: 20px;
+    font-size: 30px;
+    text-align: left;
+  }
+
+.chapter .grid-item1{
+    background-color: #1e1e57;
+    padding: 20px;
+    font-size: 20px;
+    text-align: left;
 }
 
 
