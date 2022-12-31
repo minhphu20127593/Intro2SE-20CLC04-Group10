@@ -111,5 +111,25 @@ public class ChapterController {
         model.addAttribute("comic",comic);
         return "readChapter";
     }
-
+    @GetMapping("/chapter/{comicID}/listAll")
+    public String listAllChapter(Model model,@PathVariable("comicID") int comicID,@Param("chapterPage") String chapterPage,@Param("keyword") String keyword) {
+        Comic comic = comicService.getComicByID(comicID);
+        model.addAttribute("comic",comic);
+        int numpage = 1;
+        if (chapterPage!=null)
+            numpage = Integer.parseInt(chapterPage);
+        Page<Chapter> page = chapterService.listByPageOfChapter(numpage,"dateModified","des",keyword,comic);
+        List<Chapter> chapters = page.getContent();
+        long startCount = (1 - 1)* ComicService.pageSize + 1;
+        long endCount = startCount + ComicService.pageSize - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        model.addAttribute("chapters",chapters);
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",1);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        return "quanlychapter";
+    }
 }

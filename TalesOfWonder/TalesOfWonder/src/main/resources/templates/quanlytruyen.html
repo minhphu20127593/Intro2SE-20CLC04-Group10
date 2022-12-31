@@ -117,11 +117,11 @@
                         <form th:action="@{/comic/listAll/1}" class="form form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-2 form-group">
+                                    <div class="col-md-5 form-group">
                                         <label>Keyword</label>
                                     
                                         <input type="text" id="first-name" class="form-control" name="keyword" placeholder="Enter your keyword">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Search</button>
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                                     <span class="badge bg-danger">Delete</span>
                                 </td>
                                 <td>
-                                    <span class="badge bg-success">View info</span>
+                                    <a th:href="@{'/chapter/'+${comic.id}+'/listAll'}" class="badge bg-success">View info</a>
                                 </td>
                                 </tbody>
                             </th:block>
