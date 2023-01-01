@@ -70,4 +70,15 @@ public class ComicService {
 
         return posts;
     }
+
+    public List<Comic> findAllComicWaitForApprove() {
+        return comicRepository.findAllComicWaitForApprove();
+    }
+    public boolean deleteComic(int comicID) {
+        Comic comic = comicRepository.findById(comicID).get();
+        if (comic == null)
+                return false;
+        comicRepository.deleteById(comicID);
+        return true;
+    }
 }
