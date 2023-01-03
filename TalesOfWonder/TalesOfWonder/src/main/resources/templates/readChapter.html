@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales of Wonder</title>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!--css link  -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/readcomic.css">
+
+    <!--script-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#header").load("[[@{./includes/header.html}]]");
+     
+            $("#contact").load("[[@{./includes/contact.html}]]");
+            $("#footer").load("[[@{./includes/footer.html}]]");
+
+        });
+    </script>
+</head>
+
+<div id="header" class=""></div>
+<div id="body" class=" d-flex flex-column min-vh-100">
+    <section class="home" id="home">
+
+    </section>
+
+    <div class="comic-bar">
+        <h1><a th:href="@{/}">HOME</a> >> <a th:href="@{/search}">CATEGORY</a> >> <span>[[${comic.name}]]</span> >></h1>
+      
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                [[${currentChapter.name}]]
+            </button>
+            <div class="dropdown-menu">
+                <th:block th:each="chapter:${chapters}">
+                    <a class="dropdown-item"  th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}">[[${chapter.name}]]</a>
+                </th:block>
+            </div>
+          </div>
+        <div class="prev">
+ 
+            <a class="btn btn-outline-secondary" name="prev" th:if="${prevChapter != null}" th:href=" @{'/readChapter?comicID='+${comic.id}+'&chapterID='+${prevChapter.id}}">PREV</a>
+            <a class="btn btn-outline-secondary" name="prev" th:if="${prevChapter == null}" th:href=" @{'/'}">PREV</a>
+        </div>
+        <div class="next">
+          
+            <a class="btn btn-outline-secondary" name="next" th:if="${nextChapter != null}" th:href=" @{'/readChapter?comicID='+${comic.id}+'&chapterID='+${nextChapter.id}}">NEXT</a>
+            <a class="btn btn-outline-secondary" name="next" th:if="${nextChapter == null}" th:href=" @{'/'}">NEXT</a>
+        </div>
+
+    </div>
+
+    <!-- home section ends -->
+
+    <!-- menu section starts  -->
+
+    <section class="menu" id="menu">
+
+        <h1 class="heading"> Artist: <span>DDMuri</span> </h1>
+
+        <div class="box-container2">
+            <th:block th:each="image:${images}">
+                <div class="comic-page">
+                    <img th:src="@{${image.getPhotosImagePath}}" alt="">
+                </div>
+            </th:block>
+           
+        </div>
+
+    </section>
+
+    <!-- menu section ends -->
+
+    <div class="comment">
+        <h3>Comments</h3>
+        <hr />
+        <form th:action="@{/comment/save}" method="post" th:object="${comment}">
+            <textarea th:field="*{content}" rows="5" placeholder="Enter your thoughts..." name="comment"></textarea>
+            <input type="hidden" th:field="*{comic}">
+            <input type="hidden" th:field="*{chapter}">
+            <button class="submit-comment links" type="submit">Send</button>
+        </form>
+        <div class="old-comments">
+            <th:block th:each="chapterComment:${comments}">
+                <div class="comment-entry">
+                    <img src="./images/avatar1.png" alt="ddmuri">
+                    <div class="comment-content vertical-center">
+                        <textarea>[[${chapterComment.content}]]</textarea>
+                        <h4>[[${chapterComment.dateComment}]]</h4>
+                    </div>
+    
+                </div>
+            </th:block>
+            
+            <div class="comment-entry">
+                <img src="./images/1.jpeg" alt="ddmuri">
+                <div class="comment-content vertical-center">
+                    <textarea>
+My only exception…
+
+“Balancing on breaking branches, telling me why love is sacred.”
+
+One chapter closes, a new chapter begins.
+
+Love unravels the juxtaposition of honesty and forgiveness. 
+
+May love be held.
+May love be fear.
+May love be hope.
+May love be the only thing that lasts.</textarea>
+                    <h4>11/10/2021 at 9:35 pm</h4>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="">Page [[${currentPage}]] of [[${totalPages}]] </a>
+            <a href="#">&laquo;</a>
+            <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+                <a th:if="${currentPage == 1}" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage=1'}" >First</a>
+            </li>
+            <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${currentPage!=1 ? (currentPage - 1) : 1}}" tabindex="-1">Previous</a>
+            </li>
+            <li th:class="${currentPage == i ? 'active' : ''}" th:each="i : ${#numbers.sequence(1,totalPages)}">
+                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${i}}">[[${i}]]</a>
+            </li>
+            <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+                <a  th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${currentPage!=totalPages ? (currentPage + 1) : totalPages}}" >Next</a>
+            </li>
+
+            <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${totalPages}}">End</a>
+            </li>
+          </div>
+    </div>
+
+
+    <!-- custom js file link  -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-50px";
+        }
+        }
+    </script>
+</div>
+<div id="contact" class=""></div>
+<div id="footer" class=""></div>
+
+</html>
