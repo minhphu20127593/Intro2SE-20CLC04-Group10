@@ -221,18 +221,19 @@ section {
 
 .menu .box-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1.5rem;
 }
 
 .menu .box-container .box {
-    padding: 0rem;
+    padding: 1.5rem;
     text-align: center;
     border: var(--border);
+    min-height: 350px;
 }
 
 .menu .box-container .box img {
-    height: 40rem;
+    height: 22rem;
     width: 90%;
 }
 
@@ -240,6 +241,8 @@ section {
     color: #fff !important;
     font-size: 2.5rem;
     padding: 1rem 0;
+    max-height: 150px;
+    min-height: 100px;
 }
 
 .menu .box-container .box .chapter {
@@ -292,7 +295,6 @@ section {
 .products .box-container .box:hover {
     background: var(--main-color);
 }
-
 
 .contact .row {
     margin-top: -50px;
@@ -430,6 +432,54 @@ section {
     color: var(--main-color);
 }
 
+.detail{
+    background: var(--bg);
+}
+
+.detail .slides{
+    background-color:var(--bg);
+}
+
+.detail .slides .breadcrumb{
+    padding: 1rem 0;
+    background-color:var(--bg);
+}
+
+.detail .slides .breadcrumb a{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#fff;
+    margin:.3rem;
+    border-radius: 50%;
+}
+
+.detail .info h1{
+    font-size: 5rem;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info h4{
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info .small {
+    font-size:2rem;
+    color: #fff;
+    text-align: center;
+    font-family: "Tahoma",sans-serif, "Helvetica", Arial;
+}
+
+.detail .info {
+    background-color: #1e1e57;
+}
 
 /* media queries  */
 @media (max-width:991px) {

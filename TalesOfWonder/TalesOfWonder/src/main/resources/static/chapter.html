@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tales of Wonder</title>
+
+  <!--bootstrap-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- font awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!--css link  -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rate.css">
+  <link rel="stylesheet" href="css/comment.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <script>
+    $(function () {
+      $("#header").load("./includes/header.html");
+      $("#footer").load("./includes/footer.html");
+
+    });
+  </script>
+
+  <!--script-->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</head>
+<!--header section starts-->
+<div id="header" class=""></div>
+<!--header section ends-->
+
+<body style="background-color: #011B29;">
+
+
+  <br><br><br>
+  <!--comic detail section starts-->
+
+  <section class="detail">
+    <!--comic position-->
+    <div class="slides">
+      <ul class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+          <a href="index.html" class="itemcrumb" itemprop="item" itemtype="http://schema.org/Thing">
+            <span itemprop="name">Home >> </span>
+          </a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+          <a href="index.html" class="itemcrumb" itemprop="item" itemtype="http://schema.org/Thing">
+            <span itemprop="name"> Category >> </span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+          <a href="index.html" class="itemcrumb active" itemprop="item" itemtype="http://schema.org/Thing">
+            <span itemprop="name"> Martial Art Peek</span>
+          </a>
+          <meta itemprop="position" content="3">
+        </li>
+      </ul>
+    </div>
+
+    <div class="info">
+
+      <div class="row">
+
+        <article id="item-detail">
+
+          <div class="grid-container">
+            <div class="img-container">
+              <img src="images/manga_1.jpeg" alt="">
+            </div>
+
+            <div class="grid-item">
+              <div class="col-xs-8 col-info">
+                <h1 class="title-detail">Martial Art Peek</h1>
+                <h4 class="title-time">
+                  [Update: 14:19 29/12/2022]
+                </h4>
+                <ul class="list-info">
+                  <li class="author row">
+                    <p class="name col-xs-4" style="font-size:60%">
+                      <i class="fa fa-user"></i> Author:
+                    </p>
+                    <p class="col-xs-8" style="font-size:60%">Updating</p>
+                  </li>
+
+                  <li class="status row">
+                    <p class="name col-xs-4" style="font-size:60%">
+                      <i class="fa fa-rss"></i> Status:
+                    </p>
+
+                    <p class="col-xs-8" style="font-size:60%">Processing</p>
+                  </li>
+
+                  <li class="kind row">
+                    <p class="name col-xs-4" style="font-size:60%">
+                      <i class="fa fa-tags"></i> Category:
+
+                      <a href="#">Action</a> -
+                      <a href="#">Fantasy</a> - <a href="#">Manhua</a> -
+                      <a href="#">Fantasy</a> - <a href="#">Manhua</a> -
+                      <a href="#">Shounen</a> - <a href="#">Supernatural</a> -
+                      <a href="#">Shounen</a> - <a href="#">Supernatural</a> -
+                      <a href="#">Truyện Màu</a>
+                    </p>
+                  </li>
+
+                  <li class="row">
+                    <p class="name col-xs-4" style="font-size:60%">
+                      <i class="fa fa-eye"></i> Views:
+                    </p>
+
+                    <p class="col-xs-8" style="font-size:60%">N/A</p>
+                  </li>
+                  <li class="row">
+                    <p><i class="fa fa-smile"></i> Rate:
+                    <div class="star-container">
+                      <ul id='stars'>
+                        <li class='star' title='Poor' data-value='1'>
+                          <button></button>
+                        </li>
+                        <li class='star' title='Fair' data-value='2'>
+                          <button></button>
+                        </li>
+                        <li class='star' title='Good' data-value='3'>
+                          <button></button>
+                        </li>
+                        <li class='star' title='Excellent' data-value='4'>
+                          <button></button>
+                        </li>
+                        <li class='star' title='WOW!!!' data-value='5'>
+                          <button></button>
+                        </li>
+                      </ul>
+                    </div>
+                    </p>
+
+                  </li>
+                  <li class="row">
+                    <p><i class="fa fa-book"></i> DESCRIPTION</p>
+                    <hr style="color:white; margin-left:0.8%; width: 95%;">
+                    <p>
+                      In the early days of virtual reality games appeared an undefeated character. However, he suddenly
+                      disappeared for unknown reasons.
+                      Now, he is back after a long absence.</p>
+                  </li>
+
+
+                </ul>
+
+                <div class="chapter-action">
+                  <button name="follow">Follow</button>
+                  <button name="share">Share</button>
+                  <button name="save">Add to Collection</button>
+                </div>
+              </div>
+              
+              
+            </div>
+          </div>
+        </article>
+      </div>
+
+
+  </section>
+  <!--comic detail section ends-->
+
+  <!--chapter section starts-->
+  <section class="chapter">
+
+    <h2 class="list-title clearfix">
+      <i class="fa fa-list"></i> Chapter list
+    </h2>
+
+    <div class="grid-container">
+      <div class="grid-item" style="color:white">Chapter</div>
+      <div class="grid-item" style="color:white">Last update</div>
+      <div class="grid-item" style="color:white">Views</div>
+
+    </div>
+
+    <div class="grid-container">
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 1</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 2</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 3</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 4</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 5</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 6</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+
+      <div class="grid-item1" style="color:white">
+        <a href="index.html" style="color:white">Chap 7</a>
+      </div>
+      <div class="grid-item1" style="color:white">01/01/2022</div>
+      <div class="grid-item1" style="color:white">N/A</div>
+    </div>
+  </section>
+  <!--chapter section ends-->
+
+  <div class="comment">
+    <h3>Comments</h3>
+    <hr />
+    <textarea rows="5" placeholder="Enter your thoughts..." name="comment"></textarea>
+    <button class="submit-comment links">Send</button>
+
+    <div class="old-comments">
+      <div class="comment-entry">
+        <img src="./images/avatar1.png" alt="ddmuri">
+        <div class="comment-content vertical-center">
+          <textarea>The atmostphere is so intense right now.</textarea>
+          <h4>11/10/2021 at 9:35 pm</h4>
+        </div>
+
+      </div>
+      <div class="comment-entry">
+        <img src="./images/avatar1.png" alt="ddmuri">
+        <div class="comment-content vertical-center">
+          <textarea>part 1: love is draining. love is hurting. love is ignoring (from the series "love is mytherapy")</textarea>
+          <h4>11/10/2021 at 9:35 pm</h4>
+        </div>
+
+      </div>
+      <div class="comment-entry">
+        <img src="./images/avatar2.png" alt="ddmuri">
+        <div class="comment-content vertical-center">
+          <textarea>Why he does that? It does not make any sense.</textarea>
+          <h4>06/05/2022 at 3:51 pm</h4>
+        </div>
+
+      </div>
+      <div class="comment-entry">
+        <img src="./images/1.jpeg" alt="ddmuri">
+        <div class="comment-content vertical-center">
+          <textarea>
+My only exception…
+
+“Balancing on breaking branches, telling me why love is sacred.”
+
+One chapter closes, a new chapter begins.
+
+Love unravels the juxtaposition of honesty and forgiveness. 
+
+May love be held.
+May love be fear.
+May love be hope.
+May love be the only thing that lasts.</textarea>
+          <h4>11/10/2021 at 9:35 pm</h4>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pagination">
+      <a href="">Page 2 of 6</a>
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a href="#" class="active">2</a>
+      <a href="#">3</a>
+      <a href="#">...</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+      <a href="">Last page</a>
+    </div>
+  </div>
+
+
+
+  <!-- footer section starts-->
+  <span id="back-to-top" style="display: inline;">
+    <i class="fas fa-angle-up"></i>
+  </span>
+
+
+
+
+  <!-- footer section ends -->
+
+  <!-- custom js file link  -->
+  <script src="js/rate.js"></script>
+
+</body>
+<div id="footer" class=""></div>
+
+</html>
