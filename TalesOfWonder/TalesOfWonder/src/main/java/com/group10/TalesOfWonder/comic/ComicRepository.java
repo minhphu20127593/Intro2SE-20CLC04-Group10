@@ -21,6 +21,4 @@ public interface ComicRepository extends PagingAndSortingRepository<Comic,Intege
     public Page<Comic> findAllByKeyWordOfUser(String keyword, int id, Pageable pageable);
     @Query("SELECT u FROM Comic u Where u.creator.id = ?1")
     public Page<Comic> findAllByUser(int id, Pageable pageable);
-    @Query("SELECT u from Comic u Where u.enable = false")
-    List<Comic> findAllComicWaitForApprove();
 }

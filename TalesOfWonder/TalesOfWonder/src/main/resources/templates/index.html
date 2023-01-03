@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!--css link  -->
-    <link rel="stylesheet" th:href="@{./css/style.css}">
+    <link rel="stylesheet" href="./css/style.css">
+
     <!--script-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -33,7 +34,7 @@
             $("#body").load("[[@{./includes/body.html}]]");
             $("#contact").load("[[@{./includes/contact.html}]]");
             $("#footer").load("[[@{./includes/footer.html}]]");
-
+          
         });
     </script>
 </head>
@@ -67,7 +68,7 @@
     <h1 class="heading"> latest <span>updates</span> </h1>
 
     <div class="box-container">
-
+        
 
         <th:block th:each="comic: ${listComicsLatest}">
             <div class="box">

@@ -133,25 +133,6 @@ public class ComicController {
         model.addAttribute("listComicsMostView",comicsMostView);
         return "index";
     }
-    @GetMapping("/admin/approveComic")
-    public String approveComic(Model model) {
-        List<Comic> comics = comicService.findAllComicWaitForApprove();
-        model.addAttribute("comics",comics);
-        return "approveComic";
-    }
-
-    @GetMapping("/comic/activecomic/{comicId}")
-    public String activeComic(Model model,@PathVariable("comicId") int comicId) {
-        Comic comic = comicService.getComicByID(comicId);
-        comic.setEnable(true);
-        comicService.save(comic);
-        return "redirect:/admin/approveComic";
-    }
-    @GetMapping("/comic/deleteComic/{comicId}")
-    public String deleteComic(@PathVariable("comicId") int comicId) {
-        boolean success = comicService.deleteComic(comicId);
-        return  "redirect:/admin/approveComic";
-    }
 //    @GetMapping("/{pageNum}")
 //    public String listByPage(@PathVariable(name = "pageNum") int pageNum, @Param("sortField") String sortField, @Param("sortDir")
 //            String sortDir, Model model, @Param("keyword") String keyword) {
