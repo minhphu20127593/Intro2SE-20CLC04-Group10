@@ -1,355 +1,122 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
-
-:root {
-    --main-color: #d3ad7f;
-    --black: #011B29;
-    --bg: #011B29;
-    --border: .1rem solid rgba(255, 255, 255, .3);
-}
-
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
-
-html {
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
-}
-
 body {
-    background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(22, 5, 106);
 }
-
-section {
-    padding: 2rem 7%;
+.container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-
-.heading {
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    padding-bottom: 3.5rem;
-    font-size: 4rem;
+.container header {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
 }
-
-.heading span {
-    color: var(--main-color);
-    text-transform: uppercase;
+.container .form {
+  margin-top: 30px;
 }
-
-
-.header {
-    background: var(--bg);
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 7%;
-    border-bottom: var(--border);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
 }
-
-.header .logo {
-    height: 2rem;
-    font-size: 3rem;
+.input-box label {
+  color: #333;
 }
-
-.header .navbar a {
-    font-weight: bold;
-    margin: 0 1rem;
-    font-size: 1.6rem;
-    color: #fff;
-    text-decoration: none;
-    margin-left: 30px;
-    margin-right: 30px;
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
 }
-
-.header .navbar a:hover {
-    color: var(--main-color);
-    border: .1rem solid var(--main-color);
-    padding-bottom: .5rem;
-    padding-top: .5rem;
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-
-.header .icons div {
-    color: #fff;
-    cursor: pointer;
-    font-size: 2.5rem;
-    margin-left: 2rem;
+.form .column {
+  display: flex;
+  column-gap: 15px;
 }
-
-.header .icons div:hover {
-    color: var(--main-color);
+.form .gender-box {
+  margin-top: 20px;
 }
-
-
-.header .search-form {
-    position: absolute;
-    top: 115%;
-    right: 7%;
-    background: #fff;
-    width: 50rem;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    transform: scaleY(0);
-    transform-origin: top;
+.gender-box h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
 }
-
-.header .search-form.active {
-    transform: scaleY(1);
+.form :where(.gender-option, .gender) {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
 }
-
-.header .search-form input {
-    height: 100%;
-    width: 100%;
-    font-size: 1.6rem;
-    color: var(--black);
-    padding: 1rem;
-    text-transform: none;
+.form .gender {
+  column-gap: 5px;
 }
-
-.header .search-form label {
-    cursor: pointer;
-    font-size: 2.2rem;
-    margin-right: 1.5rem;
-    color: var(--black);
+.gender input {
+  accent-color: rgb(130, 106, 251);
 }
-
-.header .search-form label:hover {
-    color: var(--main-color);
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
 }
-
-.header-bg {
-    position: absolute;
-    top: -1%;
-    left: -1%;
-    width: 102%;
-    height: 20%;
-    float: left;
-    opacity: 80%;
-    z-index: 0;
+.gender label {
+  color: #707070;
 }
-
-.contact .row {
-    margin-top: -50px;
-    display: flex;
-    background: var(--black);
+.address :where(input, .select-box) {
+  margin-top: 15px;
+}
+.select-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+}
+.form button {
+  height: 55px;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(130, 106, 251);
+}
+.form button:hover {
+  background: rgb(22, 5, 106);
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+  .form .column {
     flex-wrap: wrap;
-    gap: 1rem;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
 }
-
-.contact .row .map {
-    flex: 1 1 45rem;
-    width: 100%;
-    object-fit: cover;
-    padding: 80px 10px;
-    margin-top: -10px;
-}
-
-.contact .row .address {
-    text-align: left;
-    font-size: large;
-    margin-left: 102px;
-    margin-top: -80px;
-    size: 50px;
-    color: aliceblue
-}
-
-.contact .row form {
-    flex: 1 1 45rem;
-    padding: 5rem 2rem;
-    text-align: center;
-}
-
-.contact .row form h3 {
-    text-transform: uppercase;
-    font-size: 3.5rem;
-    color: #fff;
-}
-
-.contact .row form .inputBox {
-    display: flex;
-    align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    background: var(--bg);
-    border: var(--border);
-}
-
-.contact .row form .inputBox span {
-    color: #fff;
-    font-size: 2rem;
-    padding-left: 2rem;
-}
-
-.contact .row form .inputBox input {
-    width: 100%;
-    padding: 2rem;
-    font-size: 1.7rem;
-    color: #fff;
-    text-transform: none;
-    background: none;
-}
-
-.submit-btn {
-    padding: .7rem 2rem;
-    color: #fff;
-    background-color: var(--black);
-    border: var(--border);
-    font-size: 2rem;
-}
-
-.submit-btn {
-    padding: .7rem 2rem;
-    color: #fff;
-    background-color: var(--black);
-    border: var(--border);
-    font-size: 2rem;
-}
-
-.submit-btn:hover {
-    background: var(--main-color);
-    text-decoration: underline;
-}
-
-.footer {
-    background: var(--black);
-    text-align: center;
-}
-
-.footer .share {
-    padding: 1rem 0;
-}
-
-.footer .share a {
-    height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    font-size: 2rem;
-    color: #fff;
-    border: var(--border);
-    margin: .3rem;
-    border-radius: 50%;
-}
-
-.footer .share a:hover {
-    background-color: var(--main-color);
-}
-
-.footer .links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2rem 0;
-    gap: 1rem;
-}
-
-.footer .links a {
-    padding: .7rem 2rem;
-    color: #fff;
-    border: var(--border);
-    font-size: 2rem;
-}
-
-.footer .links a:hover {
-    background: var(--main-color);
-}
-
-.footer .credit {
-    font-size: 2rem;
-    color: #fff;
-    font-weight: bold;
-    padding: 1.5rem;
-}
-
-.footer .credit span {
-    color: var(--main-color);
-}
-
-
-/* media queries  */
-@media (max-width:991px) {
-
-    html {
-        font-size: 55%;
-    }
-
-    .header {
-        padding: 1.5rem 2rem;
-    }
-
-    section {
-        padding: 2rem;
-    }
-
-}
-
-@media (max-width:768px) {
-
-    #menu-btn {
-        display: inline-block;
-    }
-
-    .header .navbar {
-        position: absolute;
-        top: 100%;
-        right: -100%;
-        background: #fff;
-        width: 30rem;
-        height: calc(100vh - 9.5rem);
-    }
-
-    .header .navbar.active {
-        right: 0;
-    }
-
-    .header .navbar a {
-        color: var(--black);
-        display: block;
-        margin: 1.5rem;
-        padding: .5rem;
-        font-size: 2rem;
-    }
-
-    .header .search-form {
-        width: 90%;
-        right: 2rem;
-    }
-
-    .home {
-        background-position: left;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .home .content h3 {
-        font-size: 4.5rem;
-    }
-
-    .home .content p {
-        font-size: 1.5rem;
-    }
-
-}
-
-@media (max-width:450px) {
-
-    html {
-        font-size: 50%;
-    }
-
-}
-
-

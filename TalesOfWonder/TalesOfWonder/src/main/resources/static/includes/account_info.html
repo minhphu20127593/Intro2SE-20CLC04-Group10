@@ -1,69 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Account's Information</title>
-
-    <link rel ="stylesheet" href ="account_info.css">
-
-</head>
-
-<body>
-    <!-- profile section starts  -->
-
-        <section class="contact" id="contact">
-
-            <h1 class="heading"> <span>Account's </span> Information </h1>
+  
+    <link rel="stylesheet" href="/Intro2SE-20CLC04-Group10/TalesOfWonder/TalesOfWonder/src/main/resources/static/css/account_info.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>Account's Information</header>
+      <form action="#" class="form">
+        <div class="input-box">
+          <label>Your ID name</label>
+          <input type="text" placeholder="Enter ID name" required />
+        </div>
         
-            <div class="row">
-        
-                <form action="">
-        
-                    <div class="inputBox">
-                        <span class="fas fa-user">Account Name</span>
-                        <input type="text" placeholder="account name">
-                        <br><br>
-                    </div>
-                    <div class="inputBox">
-                        <span class="fas fa-envelope">Email</span>
-                        <input type="email" placeholder="email">
-                        <br><br>
-                    </div>
-                    <div class="inputBox">
-                        <span class="fas fa-user">First Name</span>
-                        <input type="text" placeholder="first name">
-                        <br><br>
-                    </div>
-                    <div class="inputBox">
-                        <span class="fas fa-user">Last Name</span>
-                        <input type="text" placeholder="last name">
-                        <br><br>
-                    </div>
-                    <div class="inputBox">
-                        <span class="fas fa-user">Gender</span>
-                        <input type="text" placeholder="gender">
-                        <br><br>
-                    </div>
-
-                    <div class="inputBox">
-                        <span class="fas fa-phone">Phone Number</span>
-                        <input type="number" placeholder="number">
-                        <br><br>
-                    </div>
-                    <input type="submit" value="Update" class=" btn btn--radius-2 submit-btn">
-                </form>
-        
-        
-            </div>
-        
-        </section>
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="text" placeholder="Enter email address" required />
         </div>
 
-    <!-- profile section ends -->
+        <div class="input-box">
+            <label>First Name</label>
+            <input type="text" placeholder="Enter first name" required />
+          </div>
 
-
-</body>
-
+        <div class="gender-box">
+          <h3>Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="check-male" name="gender" checked />
+              <label for="check-male">male</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" />
+              <label for="check-female">Female</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-other" name="gender" />
+              <label for="check-other">prefer not to say</label>
+            </div>
+          </div>
+        </div>
+        <div class="input-box address">
+          <div class="column">
+            <div class="select-box">
+              <select>
+                <option hidden>Your Rank</option>
+                <option>Diamond</option>
+                <option>Gold</option>
+                <option>Silver</option>
+                <option>Copper</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button>Update</button>
+      </form>
+    </section>
+  </body>
 </html>
+
