@@ -16,7 +16,7 @@ body {
 }
 .container {
   position: relative;
-  max-width: 700px;
+  max-width: 500px;
   width: 100%;
   background: #fff;
   padding: 25px;
@@ -106,7 +106,7 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: rgb(130, 106, 251);
+  background: rgb(22, 5, 106);
 }
 .form button:hover {
   background: rgb(22, 5, 106);
