@@ -50,10 +50,13 @@
         <th:block th:each="comic: ${listComicsMostView}">
             <div class="box">
                 <img th:src="@{${comic.getPhotosImagePath}}" alt="">
-                <h3>[[${comic.name}]]</h3>
-                <th:block th:each="chapter: ${listChaptersMostView.get(comic.id)}">
-                    <h4>[[${chapter.name}]]</h4>
-                </th:block>
+                <a th:href="@{'/readComic?comicId='+${comic.id}}">[[${comic.name}]]</a>
+                <div class="chapter">
+                    <th:block th:each="chapter: ${listChaptersMostView.get(comic.id)}">
+                        <a name="chap" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}">[[${chapter.name}]]</a>
+                    </th:block>
+                </div>
+                
             </div>
         </th:block>
 

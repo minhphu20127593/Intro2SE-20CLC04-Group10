@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales of Wonder</title>
+   
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!--css link  -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/rate.css}">
+    <link rel="stylesheet" th:href="@{/css/comment.css}">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous"></script>
+    <script  type="text/javascript">
+        $(function () {
+            $("#header").load("[[@{./includes/header.html}]]");
+            $("#footer").load("[[@{./includes/footer.html}]]");
+
+        });
+        function followComic(e) {
+           
+        }
+        $(document).ready(function () {
+            $("#commentform").on('submit', function(e){
+
+                e.preventDefault();
+                var object = $(this).serialize();
+                // alert('aaa' + object+'*****'+$('#commentform').attr('action'))
+                $.ajax({
+                        type: 'post',
+                         url: $('#commentform').attr('action'),
+                          data: $(this).serialize(),
+                          success: function(returnedData){
+                        	  if (returnedData=='not login yet')
+
+                        	    alert("you must login to comment")
+                                else {
+                                    var contentComment = $('#commentContent').val()
+                                    var dt = new Date();
+                                    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                                    $('.old-comments').prepend(` <div class="comment-entry">
+                                    <img src="./images/avatar1.png" alt="ddmuri">
+                                    <div class="comment-content vertical-center">
+                                        <textarea>${contentComment}</textarea>
+                                        <h4>${time}</h4>
+                                    </div>
+
+                                </div>`)}
+                            },    
+
+                            error: function(xhr, exception) {
+                            	alert(exception);
+                            }
+                    }); 
+            });
+            $('#follow').on('click', function () {
+                url = $(this).attr('href')               
+                $.ajax({ method: "GET",  url }).done(function (response) {
+                        alert(response)
+                })
+            });
+            /* 1. Visualizing things on Hover - See next part for action on click */
+            $('#stars li').on('mouseover', function () {
+                var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+                // Now highlight all the stars that's not after the current hovered star
+                $(this).parent().children('li.star').each(function (e) {
+                    if (e < onStar) {
+                        $(this).children('button').addClass('hover');
+                        $(this).addClass('selected');
+                    }
+                    else {
+                        $(this).children('button').removeClass('hover');
+                        $(this).removeClass('selected');
+                    }
+                });
+
+            });
+
+            $('.grid-item .row p').on('click', function () {
+                console.log('reset');
+                $('#stars li').parent().children('li.star').each(function (e) {
+                    $('#stars li').children('button').removeClass('hover');
+                    $('#stars li').removeClass('selected');
+                    $('#stars li').children('button').removeClass('selected');
+
+                   
+                    
+                });
+            });
+
+
+            /* 2. Action to perform on click */
+            $('#stars li').on('click', function () {
+                var url = $(this).attr('link') // The star currently selected
+                $.ajax({ method: "GET",  url }).done(function (response) {
+                    alert(response)
+                })
+                var onStar = parseInt($(this).data('value'), 10);
+                var stars = $(this).parent().children('li.star');
+
+
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('selected');
+                    $(stars[i]).children('button').removeClass('selected');
+
+                }
+
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('selected');
+                    $(stars[i]).children('button').addClass('selected');
+
+                }
+
+                // JUST RESPONSE (Not needed)
+                var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+                var msg = "";
+                if (ratingValue > 1) {
+                    msg = "Thanks! You rated this " + ratingValue + " stars.";
+                }
+                else {
+                    msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+                }
+                console.log(msg);
+            });
+
+
+            });
+
+    </script>
+
+    <!--script-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<!--header section starts-->
+<div id="header" class=""></div>
+<!--header section ends-->
+
+<body style="background-color: #011B29;">
+
+
+<br><br><br>
+<!--comic detail section starts-->
+
+<section class="detail">
+    <!--comic position-->
+    <div class="slides">
+        <ul class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a href="index.html" class="itemcrumb" itemprop="item" itemtype="http://schema.org/Thing">
+                    <span itemprop="name">Home >> </span>
+                </a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a href="index.html" class="itemcrumb" itemprop="item" itemtype="http://schema.org/Thing">
+                    <span itemprop="name"> Category >> </span></a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a href="index.html" class="itemcrumb active" itemprop="item" itemtype="http://schema.org/Thing">
+                    <span itemprop="name"> [[${comic.name}]]</span>
+                </a>
+                <meta itemprop="position" content="3">
+            </li>
+        </ul>
+    </div>
+
+    <div class="info">
+
+        <div class="row">
+
+            <article id="item-detail">
+
+                <div class="grid-container">
+                    <div class="img-container">
+                        <img th:src="@{${comic.getPhotosImagePath}}" alt="">
+                    </div>
+
+                    <div class="grid-item">
+                        <div class="col-xs-8 col-info">
+                            <h1 class="title-detail">[[${comic.name}]]</h1>
+                            <h4 class="title-time">
+                                [Update: [[${comic.lastModified}]] ]
+                            </h4>
+                            <ul class="list-info">
+                                <li class="author row">
+                                    <p class="name col-xs-4" style="font-size:60%">
+                                        <i class="fa fa-user"></i> Author:
+                                    </p>
+                                    <p class="col-xs-8" style="font-size:60%">[[${comic.authors}]]</p>
+                                </li>
+
+                                <li class="status row">
+                                    <p class="name col-xs-4" style="font-size:60%">
+                                        <i class="fa fa-rss"></i> Status:
+                                    </p>
+
+                                    <p class="col-xs-8" style="font-size:60%">[[${comic.status}]]</p>
+                                </li>
+
+                                <li class="kind row">
+                                    <p class="name col-xs-4" style="font-size:60%">
+                                        <i class="fa fa-tags"></i> Category:
+
+                                        
+
+                                                        <th:block th:each="category:${comic.categories}">
+                                                            <a href="#">[[${category.name}]]</a> 
+                                                        </th:block>
+                                    </p>
+                                </li>
+
+                                <li class="row">
+                                    <p class="name col-xs-4" style="font-size:60%">
+                                        <i class="fa fa-eye"></i> Views:
+                                    </p>
+
+                                    <p class="col-xs-8" style="font-size:60%">[[${comic.countView}]]</p>
+                                </li>
+                                <li class="row">
+                                    <p><i class="fa fa-smile"></i> Rate:
+                                    <div class="star-container">
+                                        <ul id='stars'>
+                                            <li class='star' title='Poor' data-value="1" th:link="@{'/readComic/' + ${comic.id}+'/vote/1'}">
+                                                <button></button>
+                                            </li>
+                                            <li class='star' title='Fair' data-value="2" th:link="@{'/readComic/' + ${comic.id}+'/vote/2'}">
+                                                <button></button>
+                                            </li>
+                                            <li class='star' title='Good' data-value="3" th:link="@{'/readComic/' + ${comic.id}+'/vote/3'}">
+                                                <button></button>
+                                            </li>
+                                            <li class='star' title='Excellent' data-value="4" th:link="@{'/readComic/' + ${comic.id}+'/vote/4'}">
+                                                <button></button>
+                                            </li>
+                                            <li class='star' title='WOW!!!' data-value="5" th:link="@{'/readComic/' + ${comic.id}+'/vote/5'}">
+                                                <button></button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </p>
+
+                                </li>
+                                <li class="row">
+                                    <p><i class="fa fa-book"></i> DESCRIPTION</p>
+                                    <hr style="color:white; margin-left:0.8%; width: 95%;">
+                                    <p>
+                                        [[${comic.description}]]</p>
+                                </li>
+
+
+                            </ul>
+
+                            <div class="chapter-action">
+                                <button id="follow"name="follow" th:href="@{'/readComic/'+${comic.id}+'/follow'}">Follow</button>
+                                <button id="share" name="share">Share</button>
+                                <!-- <button name="save">Add to Collection</button> -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </article>
+        </div>
+
+
+</section>
+<!--comic detail section ends-->
+
+<!--chapter section starts-->
+<section class="chapter">
+
+    <h2 class="list-title clearfix">
+        <i class="fa fa-list"></i> Chapter list
+    </h2>
+
+    <div class="grid-container">
+        <div class="grid-item" style="color:white">Chapter</div>
+        <div class="grid-item" style="color:white">Last update</div>
+        <div class="grid-item" style="color:white">Views</div>
+
+    </div>
+
+    <div class="grid-container">
+    
+
+       
+        <th:block th:each="chapter:${chapters}">
+            <div class="grid-item1" style="color:white">
+                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}" style="color:white">[[${chapter.name}]]</a>
+            </div>
+            <div class="grid-item1" style="color:white">[[${chapter.dateModified}]]</div>
+            <div class="grid-item1" style="color:white">[[${chapter.countView}]]</div>
+        </th:block>
+    </div>
+</section>
+<!--chapter section ends-->
+
+<div class="comment">
+    <h3>Comments</h3>
+    <hr />
+    <form id="commentform" th:action="@{/comment/save}" method="post" th:object="${comment}">
+        <textarea id="commentContent" th:field="*{content}" rows="5" placeholder="Enter your thoughts..." name="comment"></textarea>
+        <input type="hidden" th:field="*{comic}">
+        <input type="hidden" th:field="*{chapter}">
+        <button class="submit-comment links" type="submit">Send</button>
+    </form>
+
+    <div class="old-comments">
+        <th:block th:each="chapterComment:${comments}">
+            <div class="comment-entry">
+                <img src="./images/avatar1.png" alt="ddmuri">
+                <div class="comment-content vertical-center">
+                    <textarea>[[${chapterComment.content}]]</textarea>
+                    <h4>[[${chapterComment.dateComment}]]</h4>
+                </div>
+
+            </div>
+        </th:block>
+        
+        <div class="comment-entry">
+            <img src="./images/1.jpeg" alt="ddmuri">
+            <div class="comment-content vertical-center">
+                <textarea>
+My only exception…
+
+“Balancing on breaking branches, telling me why love is sacred.”
+
+One chapter closes, a new chapter begins.
+
+Love unravels the juxtaposition of honesty and forgiveness. 
+
+May love be held.
+May love be fear.
+May love be hope.
+May love be the only thing that lasts.</textarea>
+                <h4>11/10/2021 at 9:35 pm</h4>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pagination">
+        <a href="">Page [[${currentPage}]] of [[${totalPages}]] </a>
+        <a href="#">&laquo;</a>
+        <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+            <a th:if="${currentPage == 1}" th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage=1'}" >First</a>
+        </li>
+        <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${currentPage!=1 ? (currentPage - 1) : 1}}" tabindex="-1">Previous</a>
+        </li>
+        <li th:class="${currentPage == i ? 'active' : ''}" th:each="i : ${#numbers.sequence(1,totalPages)}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${i}}">[[${i}]]</a>
+        </li>
+        <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+            <a  th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${currentPage!=totalPages ? (currentPage + 1) : totalPages}}" >Next</a>
+        </li>
+
+        <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${totalPages}}">End</a>
+        </li>
+      </div>
+</div>
+
+
+
+
+<!-- footer section starts-->
+<span id="back-to-top" style="display: inline;">
+    <i class="fas fa-angle-up"></i>
+  </span>
+
+
+
+
+<!-- footer section ends -->
+
+<!-- custom js file link  -->
+
+
+</body>
+<div id="footer" class=""></div>
+
+</html>

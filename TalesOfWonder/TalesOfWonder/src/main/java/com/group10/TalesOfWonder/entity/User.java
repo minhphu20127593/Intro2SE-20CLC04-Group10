@@ -32,7 +32,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
     public Set<Comic> comicsPublish = new HashSet<>();
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_comicsFollow",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -58,6 +58,12 @@ public class User {
         if (id == null || photos == null) return  "/images/user.png";
 
         return "/user-photos/" + this.id + "/" + this.photos;
+    }
+    public void followComic(Comic comic) {
+        comicsFollow.add(comic);
+    }
+    public boolean checkIfFollowComic(Comic comic) {
+        return comicsFollow.contains(comic);
     }
     public Integer getId() {
         return id;

@@ -3,6 +3,8 @@ package com.group10.TalesOfWonder.comic;
 import com.group10.TalesOfWonder.entity.Category;
 import com.group10.TalesOfWonder.entity.Comic;
 import com.group10.TalesOfWonder.entity.User;
+import com.group10.TalesOfWonder.entity.Vote;
+import com.group10.TalesOfWonder.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,10 @@ public class ComicService {
     public CategoryRepository categoryRepository;
     @Autowired
     public ComicRepository comicRepository;
+    @Autowired
+    public VoteRepository voteRepository;
+    @Autowired
+    public UserService userService;
     public List<Category> findAllCategory() {
         List<Category> categories = (List<Category>) categoryRepository.findAll();
         return categories;
@@ -80,5 +86,35 @@ public class ComicService {
                 return false;
         comicRepository.deleteById(comicID);
         return true;
+    }
+    public int getAVGStar(Comic comic) {
+        int count = voteRepository.countVote(comic);
+        if (count == 0)
+            return 0;
+        return voteRepository.getAVG(comic);
+    }
+    public void increaseCountView(Comic comic) {
+        comic.increaseContView();
+        comicRepository.save(comic);
+    }
+    public Boolean voteAComic(Comic comic,User user,int star) {
+        Vote vote = voteRepository.getVote(user,comic);
+        if (vote!=null){
+            vote.setStart(star);
+            voteRepository.save(vote);
+            return true;
+        } else {
+            vote = new Vote(comic,user,star);
+            voteRepository.save(vote);
+            return  false;
+        }
+    }
+    public boolean followAComic(Comic comic, User user) {
+        boolean check = user.checkIfFollowComic(comic);
+        if (check)
+            return true;
+        user.followComic(comic);
+        userService.save(user);
+        return false;
     }
 }

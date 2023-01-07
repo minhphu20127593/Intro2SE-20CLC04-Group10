@@ -11,20 +11,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Controller
+@RestController
 public class CommentController {
     @Autowired
     public CommentService commentService;
     @Autowired
     public UserService userService;
     @PostMapping("comment/save")
-    public String saveComment(@AuthenticationPrincipal QAUserDetails loggedUser, @ModelAttribute Comment comment, RedirectAttributes redirectAttributes) {
+    public String saveComment(@AuthenticationPrincipal QAUserDetails loggedUser, @ModelAttribute("comment") Comment comment, RedirectAttributes redirectAttributes) {
+        if (loggedUser == null)
+            return "not login yet";
         String email = loggedUser.getUsername();
         User user = userService.getByEmail(email);
         comment.setUser(user);
-        commentService.saveComment(comment);
-        return "index";
+        Comment commentSave = commentService.saveComment(comment);
+        return "success";
     }
 }
