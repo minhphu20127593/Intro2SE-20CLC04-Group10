@@ -22,13 +22,7 @@ public class Comic {
     private String description;
     @Column(length = 100,nullable = true,columnDefinition = "nvarchar")
     private String anotherName;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "comics_votes",
-            joinColumns = @JoinColumn(name = "comic_id"),
-            inverseJoinColumns = @JoinColumn(name = "vote_id")
-    )
-    public Set<Vote> votes = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "comics_categories",
@@ -138,9 +132,7 @@ public class Comic {
         this.anotherName = anotherName;
     }
 
-    public void setVotes(Set<Vote> votes) {
-        this.votes = votes;
-    }
+
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
@@ -178,9 +170,7 @@ public class Comic {
         return anotherName;
     }
 
-    public Set<Vote> getVotes() {
-        return votes;
-    }
+
 
     public Set<Category> getCategories() {
         return categories;
@@ -188,5 +178,9 @@ public class Comic {
 
     public String getAuthors() {
         return authors;
+    }
+
+    public void increaseContView() {
+        countView++;
     }
 }
