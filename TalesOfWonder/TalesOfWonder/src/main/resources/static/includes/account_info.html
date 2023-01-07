@@ -7,30 +7,132 @@
     <title>Account's Information</title>
   
     <link rel="stylesheet" href="/Intro2SE-20CLC04-Group10/TalesOfWonder/TalesOfWonder/src/main/resources/static/css/account_info.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
   </head>
   <body>
-    <section class="container">
-      <header>Account's Information</header>
-      <form action="#" class="form">
-        <div class="input-box">
-          <label>Your ID name</label>
-          <span class="fas fa-user"></span>
-          <input type="text" placeholder="Enter ID name" required />
-        </div>
-        
-        <div class="input-box">
-          <label>Email Address</label>
-          <span class="fas fa-envelope"></span>
-          <input type="text" placeholder="Enter email address" required />
-        </div>
 
-        <div class="input-box">
+    <section class="container">
+      <div class = "leftbox">
+        <nav>
+          <a onclick ="tabs(0)" class = "tab active"><i class = "fa fa-user"></i>General</a>
+          <a onclick ="tabs(1)" class = "tab"><i class = "fa fa-address-card">Account's Information</i></a>
+          <a onclick ="tabs(2)" class = "tab"><i class = "fa fa-lock"></i>Change Password</a>
+          <a onclick ="tabs(3)" class = "tab"><i class="far fa-bookmark"></i>Followed Comics</a>
+          <a onclick ="tabs(4)" class = "tab"><i class = "fa fa-tasks"></i>Uploaded Comics</a>
+          <a onclick ="tabs(5)" class = "tab"><i class="far fa-bell"></i>Notification</a>
+          <a onclick ="tabs(6)" class = "tab"><i class="far fa-comment"></i>Comments</a>
+          <a onclick ="tabs(7)" class = "tab"><i class = "fa fa-user"></i>Exit</a>
+        </nav>
+      </div>
+
+      <div class ="rightbox">
+
+        <div class = "general tabShow">
+          <form action="#" class="form">
+          <h1> Account's Information</h1>
+          <div class="input-box">
+            <label>Your ID name</label>
+            <input type="text" placeholder="ddmuri" required />
+          </div>
+          <div class="input-box">
+            <label>Email Address</label>
+            <input type="text" placeholder="phuphuphang1230@gmail.com" required />
+          </div>
+          <div class="input-box address">
+            <div class="column">
+              <div class="select-box">
+                <select>
+                  <option hidden>Your Rank</option>
+                  <option>Diamond</option>
+                  <option>Gold</option>
+                  <option>Silver</option>
+                  <option>Copper</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>  
+          <!-- <section class="chapter">
+
+            <h2 class="list-title clearfix">
+              <i class="fa fa-list"></i> Comics You Follow
+            </h2>
+        
+            <div class="grid-container">
+              <div class="grid-item" style="color:white">Comics Name</div>
+              <div class="grid-item" style="color:white">Recent Comics </div>
+              <div class="grid-item" style="color:white">Latest Chapter</div>
+        
+            </div>
+        
+            <div class="grid-container">
+              <div class="grid-item1" style="color:white">
+                <a href="./readcomic.html" style="color:white">Martial Art Peek</a>
+              </div>
+              <div class="grid-item1" style="color:white">Chapter 48</div>
+              <div class="grid-item1" style="color:white">Chapter 50</div>
+        
+              <div class="grid-item1" style="color:white">
+                <a href="./readcomic.html" style="color:white">I Came From The Game World</a>
+              </div>
+              <div class="grid-item1" style="color:white">Chapter 5</div>
+              <div class="grid-item1" style="color:white">Chapter 28</div>
+        
+            </div>
+          </section> -->
+
+          <!--chapter section ends-->
+        
+          <!-- <section class="chapter">
+
+            <h2 class="list-title clearfix">
+              <i class="fa fa-list"></i> Comments Section
+            </h2>
+        
+            <div class="grid-container">
+              <div class="grid-item" style="color:white">Comics Name</div>
+              <div class="grid-item" style="color:white">Latest Update </div>
+              <div class="grid-item" style="color:white">Comments</div>
+        
+            </div>
+        
+            <div class="grid-container">
+              <div class="grid-item1" style="color:white">
+                <a href="./readcomic.html" style="color:white">Martial Art Peek</a>
+              </div>
+              <div class="grid-item1" style="color:white">11/10/2021 at 9:35 pm</div>
+              <div class="grid-item1" style="color:white">This is fun</div>
+        
+              <div class="grid-item1" style="color:white">
+                <a href="./readcomic.html" style="color:white">I Came From The Game World</a>
+              </div>
+              <div class="grid-item1" style="color:white">11/10/2021 at 9:35 pm</div>
+              <div class="grid-item1" style="color:white">This is not fun</div>
+            </div>
+          </section>  -->
+        
+        
+        <div class = "profile tabShow">
+          <form action="#" class="form">
+          <h1>Account's Information</h1>
+          <div class="input-box">
+            <label>Your ID name</label>
+            <input type="text" placeholder="Enter ID name" required />
+          </div>
+        
+          <div class="input-box">
+            <label>Email Address</label>
+            <input type="text" placeholder="Enter email address" required />
+          </div>
+
+          <div class="input-box">
             <label>First Name</label>
             <input type="text" placeholder="Enter first name" required />
           </div>
 
-        <div class="gender-box">
-          <h3>Gender</h3>
+          <div class="gender-box">
+            <h3>Gender</h3>
           <div class="gender-option">
             <div class="gender">
               <input type="radio" id="check-male" name="gender" checked />
@@ -45,23 +147,67 @@
               <label for="check-other">prefer not to say</label>
             </div>
           </div>
-        </div>
-        <div class="input-box address">
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>Your Rank</option>
-                <option>Diamond</option>
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Copper</option>
-              </select>
-            </div>
           </div>
+            <div class="input-box address">
+              <div class="column">
+                <div class="select-box">
+                  <select>
+                    <option hidden>Your Rank</option>
+                    <option>Diamond</option>
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Copper</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          <button>Update</button>
+          </form>
+          </div>
+
+        <div class = "password tabShow">
+          <form action="#" class="form">
+          <h1>Change Password</h1>
+            <div class="input-box">
+              <label>Old Password</label>
+              <input type="text" placeholder="Enter your old password" required />
+            </div>
+          
+            <div class="input-box">
+              <label>New Password</label>
+              <input type="text" placeholder="Enter your new password" required />
+            </div>
+  
+            <div class="input-box">
+              <label>Verify your password</label>
+              <input type="text" placeholder="Enter your new password again" required />
+            </div>
+          <button>Change Password</button>  
+          </form>
+        
         </div>
-        <button>Update</button>
-      </form>
-    </section>
+      </div>    
+  </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        const tabBtn = document.querySelectorAll(".tab");
+        const tab = document.querySelectorAll(".tabShow");
+  
+        function tabs(panelIndex) {
+            tab.forEach(function(node){
+                node.style.display = "none";
+            });
+            tab[panelIndex].style.display = "block";
+        }
+        tabs(0);
+    </script>  
+    <script>
+       $(".tab").click(function() {
+          $(this).addClass("active").siblings().removeClass("active");
+        })
+    </script>
   </body>
 </html>
 

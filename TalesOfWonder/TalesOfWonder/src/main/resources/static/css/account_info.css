@@ -16,12 +16,15 @@ body {
 }
 .container {
   position: relative;
-  max-width: 500px;
-  width: 100%;
+  width: 800px;
+  height: 950px;
   background: #fff;
-  padding: 25px;
+  margin: 0 auto;
+  margin-top:10%;
+  padding: 80px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
 }
 .container header {
   font-size: 1.5rem;
@@ -30,7 +33,66 @@ body {
   text-align: center;
 }
 .container .form {
-  margin-top: 30px;
+  margin-top: 60px;
+}
+
+.leftbox {
+  float:left;
+  top:-5%;
+  left:5%;
+  position: absolute;
+  width: 20%;
+  height: 110%;
+  background:rgb(22, 5, 106);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border: .1em solid #fff;
+}
+
+nav{
+  width: 20% !important;
+}
+
+nav a{
+  list-style: none;
+  padding: 35px;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.1em;
+  display: block;
+  transition: all .3s ease-in-out;
+}
+
+nav a:hover{
+  color: #fff;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+nav a:first-child{
+  margin-top: 7px;
+}
+
+nav a.active{
+  color: #fff;
+}
+
+.rightbox {
+  position: relative;
+  width: 60%;
+  height: 30%;
+  background: #fff;
+  margin: 0 auto;
+  margin-top:-2%;
+  padding:25px;
+}
+
+.tabShow {
+  transition: all .5s ease-in;
+  width: 80%;
+}
+
+.tabShow {
+  display: none;
 }
 .form .input-box {
   width: 100%;
