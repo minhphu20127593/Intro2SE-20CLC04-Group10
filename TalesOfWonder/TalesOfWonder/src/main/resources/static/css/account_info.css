@@ -16,7 +16,7 @@ body {
 }
 .container {
   position: relative;
-  width: 800px;
+  width: 1100px;
   height: 950px;
   background: #fff;
   margin: 0 auto;
@@ -82,11 +82,11 @@ h1 {
 }
 .rightbox {
   position: relative;
-  width: 60%;
+  width: 80%;
   height: 80%;
   background: #fff;
-  margin: -100px 80px;
-  margin-top:-21%;
+  margin: -100px 190px;
+  margin-top:-12%;
   padding:31px;
 }
 
@@ -108,7 +108,7 @@ h1 {
 .form :where(.input-box input, .select-box) {
   position: relative;
   height: 45px;
-  width: 500px;
+  width: 700px;
   outline: none;
   font-size: 1rem;
   color: #707070;
@@ -167,7 +167,7 @@ h1 {
 }
 .form button {
   height: 55px;
-  width: 230%;
+  width: 140%;
   color: #fff;
   font-size: 1rem;
   font-weight: 400;
@@ -190,14 +190,14 @@ h1 {
 
 .chapter .grid-container {
   display: grid;
-  grid-template-columns: 180px 180px 180px;
+  grid-template-columns: 350px 180px 180px;
   background-color: #fff;
   padding: 10px;
 }
 
 .chapter .grid-container2 {
   display: grid;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 400px 300px;
   background-color: #fff;
   padding: 10px;
 }
@@ -290,7 +290,7 @@ h1 {
 }
 
 .comment {
-  margin-left: 7%;
+  margin-left: -8%;
   background-color: #fff;
   width: 86%;
   padding: 2%;
