@@ -43,6 +43,41 @@
             $("#footer").load("[[@{./includes/footer.html}]]");
 
         });
+
+        $(document).ready(function () {
+            $("#commentform").on('submit', function(e){
+
+                e.preventDefault();
+                var object = $(this).serialize();
+                // alert('aaa' + object+'*****'+$('#commentform').attr('action'))
+                $.ajax({
+                        type: 'post',
+                         url: $('#commentform').attr('action'),
+                          data: $(this).serialize(),
+                          success: function(returnedData){
+                        	  if (returnedData=='not login yet')
+
+                        	    alert("you must login to comment")
+                                else {
+                                    var contentComment = $('#commentContent').val()
+                                    var dt = new Date();
+                                    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                                    $('.old-comments').prepend(` <div class="comment-entry">
+                                    <img src="./images/avatar1.png" alt="ddmuri">
+                                    <div class="comment-content vertical-center">
+                                        <textarea>${contentComment}</textarea>
+                                        <h4>${time}</h4>
+                                    </div>
+
+                                </div>`)}
+                            },    
+
+                            error: function(xhr, exception) {
+                            	alert(exception);
+                            }
+                    }); 
+            });
+        });
     </script>
 </head>
 
