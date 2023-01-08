@@ -14,10 +14,11 @@
     <!-- font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+ 
+    <link rel="stylesheet" th:href="@{/css/readcomic.css}">
     <!--css link  -->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/readcomic.css">
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/comment.css}">
     <!--script-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -52,7 +53,7 @@
     </section>
 
     <div class="comic-bar">
-        <h1><a th:href="@{/}">HOME</a> >> <a th:href="@{/search}">CATEGORY</a> >> <span>[[${comic.name}]]</span> >></h1>
+        <h1><a th:href="@{/}">HOME</a> >> <a th:href="@{/search}">CATEGORY</a> >> <a th:href="@{'/readComic?comicId='+${comic.id}}">[[${comic.name}]]</a> >></h1>
       
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -67,12 +68,12 @@
         <div class="prev">
  
             <a class="btn btn-outline-secondary" name="prev" th:if="${prevChapter != null}" th:href=" @{'/readChapter?comicID='+${comic.id}+'&chapterID='+${prevChapter.id}}">PREV</a>
-            <a class="btn btn-outline-secondary" name="prev" th:if="${prevChapter == null}" th:href=" @{'/'}">PREV</a>
+            <a class="btn btn-outline-secondary" name="prev" th:if="${prevChapter == null}" th:href="@{'/readComic?comicId='+${comic.id}}">PREV</a>
         </div>
         <div class="next">
           
             <a class="btn btn-outline-secondary" name="next" th:if="${nextChapter != null}" th:href=" @{'/readChapter?comicID='+${comic.id}+'&chapterID='+${nextChapter.id}}">NEXT</a>
-            <a class="btn btn-outline-secondary" name="next" th:if="${nextChapter == null}" th:href=" @{'/'}">NEXT</a>
+            <a class="btn btn-outline-secondary" name="next" th:if="${nextChapter == null}" th:href="@{'/readComic?comicId='+${comic.id}}">NEXT</a>
         </div>
 
     </div>
@@ -98,31 +99,33 @@
 
     <!-- menu section ends -->
 
-    <div class="comment">
-        <h3>Comments</h3>
-        <hr />
-        <form th:action="@{/comment/save}" method="post" th:object="${comment}">
-            <textarea th:field="*{content}" rows="5" placeholder="Enter your thoughts..." name="comment"></textarea>
-            <input type="hidden" th:field="*{comic}">
-            <input type="hidden" th:field="*{chapter}">
-            <button class="submit-comment links" type="submit">Send</button>
-        </form>
-        <div class="old-comments">
-            <th:block th:each="chapterComment:${comments}">
-                <div class="comment-entry">
-                    <img src="./images/avatar1.png" alt="ddmuri">
-                    <div class="comment-content vertical-center">
-                        <textarea>[[${chapterComment.content}]]</textarea>
-                        <h4>[[${chapterComment.dateComment}]]</h4>
-                    </div>
     
-                </div>
-            </th:block>
-            
+<div class="comment">
+    <h3>Comments</h3>
+    <hr />
+    <form id="commentform" th:action="@{/comment/save}" method="post" th:object="${comment}">
+        <textarea id="commentContent" th:field="*{content}" rows="5" placeholder="Enter your thoughts..." name="comment"></textarea>
+        <input type="hidden" th:field="*{comic}">
+        <input type="hidden" th:field="*{chapter}">
+        <button class="submit-comment links" type="submit">Send</button>
+    </form>
+
+    <div class="old-comments">
+        <th:block th:each="chapterComment:${comments}">
             <div class="comment-entry">
-                <img src="./images/1.jpeg" alt="ddmuri">
+                <img src="./images/avatar1.png" alt="ddmuri">
                 <div class="comment-content vertical-center">
-                    <textarea>
+                    <textarea>[[${chapterComment.content}]]</textarea>
+                    <h4>[[${chapterComment.dateComment}]]</h4>
+                </div>
+
+            </div>
+        </th:block>
+        
+        <div class="comment-entry">
+            <img src="./images/1.jpeg" alt="ddmuri">
+            <div class="comment-content vertical-center">
+                <textarea>
 My only exception…
 
 “Balancing on breaking branches, telling me why love is sacred.”
@@ -135,46 +138,53 @@ May love be held.
 May love be fear.
 May love be hope.
 May love be the only thing that lasts.</textarea>
-                    <h4>11/10/2021 at 9:35 pm</h4>
-                </div>
-
+                <h4>11/10/2021 at 9:35 pm</h4>
             </div>
+
         </div>
-
-        <div class="pagination">
-            <a href="">Page [[${currentPage}]] of [[${totalPages}]] </a>
-            <a href="#">&laquo;</a>
-            <li th:class="${currentPage == 1 ? 'disabled' : ''}">
-                <a th:if="${currentPage == 1}" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage=1'}" >First</a>
-            </li>
-            <li th:class="${currentPage == 1 ? 'disabled' : ''}">
-                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${currentPage!=1 ? (currentPage - 1) : 1}}" tabindex="-1">Previous</a>
-            </li>
-            <li th:class="${currentPage == i ? 'active' : ''}" th:each="i : ${#numbers.sequence(1,totalPages)}">
-                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${i}}">[[${i}]]</a>
-            </li>
-            <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
-                <a  th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${currentPage!=totalPages ? (currentPage + 1) : totalPages}}" >Next</a>
-            </li>
-
-            <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
-                <a th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${currentChapter.id}+'&commentPage='+${totalPages}}">End</a>
-            </li>
-          </div>
     </div>
 
+    <div class="pagination">
+        <a href="">Page [[${currentPage}]] of [[${totalPages}]] </a>
+        <a href="#">&laquo;</a>
+        <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+            <a th:if="${currentPage == 1}" th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage=1'}" >First</a>
+        </li>
+        <li th:class="${currentPage == 1 ? 'disabled' : ''}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${currentPage!=1 ? (currentPage - 1) : 1}}" tabindex="-1">Previous</a>
+        </li>
+        <li th:class="${currentPage == i ? 'active' : ''}" th:each="i : ${#numbers.sequence(1,totalPages)}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${i}}">[[${i}]]</a>
+        </li>
+        <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+            <a  th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${currentPage!=totalPages ? (currentPage + 1) : totalPages}}" >Next</a>
+        </li>
+
+        <li th:class="${currentPage == totalPages ? 'disabled' : ''}">
+            <a th:href="@{'/readComic?comicId='+${comic.id}+'&commentPage='+${totalPages}}">End</a>
+        </li>
+      </div>
+</div>
+
+
+
+
+<!-- footer section starts-->
+<span id="back-to-top" style="display: inline;">
+    <i class="fas fa-angle-up"></i>
+  </span>
 
     <!-- custom js file link  -->
     <script>
-        window.onscroll = function() {scrollFunction()};
+        // window.onscroll = function() {scrollFunction()};
 
-        function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("navbar").style.top = "0";
-        } else {
-            document.getElementById("navbar").style.top = "-50px";
-        }
-        }
+        // function scrollFunction() {
+        // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        //     document.getElementById("navbar").style.top = "0";
+        // } else {
+        //     document.getElementById("navbar").style.top = "-50px";
+        // }
+        // }
     </script>
 </div>
 <div id="contact" class=""></div>

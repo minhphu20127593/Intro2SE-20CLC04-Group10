@@ -28,6 +28,9 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script>
+        $('.chapter button').click(function(){
+            window.location.href=$(this).attr('href');
+            })
         $(function () {
             $("#header").load("[[@{./includes/header.html}]]");
             $("#body").load("[[@{./includes/body.html}]]");
@@ -49,14 +52,15 @@
 
         <th:block th:each="comic: ${listComicsMostView}">
             <div class="box">
-                <img th:src="@{${comic.getPhotosImagePath}}" alt="">
-                <a th:href="@{'/readComic?comicId='+${comic.id}}">[[${comic.name}]]</a>
+
+                <a th:href="@{'/readComic?comicId='+${comic.id}}">
+                    <img th:src="@{${comic.getPhotosImagePath}}" alt=""> </a>
+                <h3>[[${comic.name}]]</h3>
                 <div class="chapter">
                     <th:block th:each="chapter: ${listChaptersMostView.get(comic.id)}">
-                        <a name="chap" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}">[[${chapter.name}]]</a>
+                        <button name="chap" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}">[[${chapter.name}]]</button>
                     </th:block>
                 </div>
-                
             </div>
         </th:block>
 
@@ -74,11 +78,15 @@
 
         <th:block th:each="comic: ${listComicsLatest}">
             <div class="box">
-                <img th:src="@{${comic.getPhotosImagePath}}" alt="">
+
+                <a th:href="@{'/readComic?comicId='+${comic.id}}">
+                    <img th:src="@{${comic.getPhotosImagePath}}" alt=""> </a>
                 <h3>[[${comic.name}]]</h3>
-                <th:block th:each="chapter: ${listChaptersLatest.get(comic.id)}">
-                    <h4>[[${chapter.name}]]</h4>
-                </th:block>
+                <div class="chapter">
+                    <th:block th:each="chapter: ${listChaptersMostView.get(comic.id)}">
+                        <button  name="chap" th:href="@{'/readChapter?comicID='+${comic.id}+'&chapterID='+${chapter.id}}">[[${chapter.name}]]</button>
+                    </th:block>
+                </div>
             </div>
         </th:block>
     </div>
