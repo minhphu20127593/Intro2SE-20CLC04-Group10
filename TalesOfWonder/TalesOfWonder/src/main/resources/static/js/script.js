@@ -8,7 +8,13 @@
 //   }
 // }
 
-document.querySelectorAll('.menu .box-container .box .chapter button').forEach(function (e) {
+document.querySelectorAll('.chapter button').forEach(function (e) {
+  e.addEventListener('click', function () {
+    window.location = "./chapter.html";
+});
+});
+
+document.querySelectorAll('.carousel-item').forEach(function (e) {
   e.addEventListener('click', function () {
     window.location = "./chapter.html";
 });
