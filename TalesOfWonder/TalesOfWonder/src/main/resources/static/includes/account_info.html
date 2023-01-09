@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Account's Information</title>
-  
-    <link rel="stylesheet" href="/Intro2SE-20CLC04-Group10/TalesOfWonder/TalesOfWonder/src/main/resources/static/css/account_info.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
+    
+    <link rel="stylesheet" href="../css/account_info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   -->
   </head>
   <body>
 
@@ -21,7 +23,7 @@
           <a onclick ="tabs(4)" class = "tab"><i class = "fa fa-tasks"></i>Uploaded Comics</a>
           <a onclick ="tabs(5)" class = "tab"><i class="far fa-bell"></i>Notification</a>
           <a onclick ="tabs(6)" class = "tab"><i class="far fa-comment"></i>Comments</a>
-          <a onclick ="tabs(7)" class = "tab"><i class = "fa fa-user"></i>Exit</a>
+          <a onclick ="tabs(7)" class = "tab exit"><i class = "fa fa-user"></i>Exit</a>
         </nav>
       </div>
 
@@ -52,66 +54,44 @@
             </div>
           </div>
           </form>
-        </div>  
-          <!-- <section class="chapter">
+  
+          <section class="chapter">
 
-            <h2 class="list-title clearfix">
-              <i class="fa fa-list"></i> Comics You Follow
-            </h2>
+            <h2 class="list-title clearfix"> <br> Followed Comics </br></h2>
         
             <div class="grid-container">
-              <div class="grid-item" style="color:white">Comics Name</div>
-              <div class="grid-item" style="color:white">Recent Comics </div>
-              <div class="grid-item" style="color:white">Latest Chapter</div>
+              <div class="grid-item" style="color:#000">Comics Name</div>
+              <div class="grid-item" style="color:#000">Recent Comics </div>
+              <div class="grid-item" style="color:#000">Latest Chapter</div>
         
-            </div>
-        
-            <div class="grid-container">
-              <div class="grid-item1" style="color:white">
-                <a href="./readcomic.html" style="color:white">Martial Art Peek</a>
+              <div class="grid-item" style="color:#000">
+                <a href="../chapter.html" style="color:#000">Martial Art Peek</a>
               </div>
-              <div class="grid-item1" style="color:white">Chapter 48</div>
-              <div class="grid-item1" style="color:white">Chapter 50</div>
+              <div class="grid-item" style="color:#000">Chapter 48</div>
+              <div class="grid-item" style="color:#000">Chapter 50</div>
         
-              <div class="grid-item1" style="color:white">
-                <a href="./readcomic.html" style="color:white">I Came From The Game World</a>
+              <div class="grid-item" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">I Came From The Game World</a>
               </div>
-              <div class="grid-item1" style="color:white">Chapter 5</div>
-              <div class="grid-item1" style="color:white">Chapter 28</div>
-        
+              <div class="grid-item" style="color:#000">Chapter 5</div>
+              <div class="grid-item" style="color:#000">Chapter 28</div>
             </div>
-          </section> -->
+          </section>
 
           <!--chapter section ends-->
         
-          <!-- <section class="chapter">
+          <section class="chapter">
 
-            <h2 class="list-title clearfix">
-              <i class="fa fa-list"></i> Comments Section
-            </h2>
+            <h2 class="list-title clearfix"> Comments </h2>
         
             <div class="grid-container">
-              <div class="grid-item" style="color:white">Comics Name</div>
-              <div class="grid-item" style="color:white">Latest Update </div>
-              <div class="grid-item" style="color:white">Comments</div>
-        
+              <div class="grid-item1" style="color:#000">Comics Name</div>
+              <div class="grid-item1" style="color:#000">Latest Update </div>
+              <div class="grid-item1" style="color:#000">Comments</div>
+      
             </div>
-        
-            <div class="grid-container">
-              <div class="grid-item1" style="color:white">
-                <a href="./readcomic.html" style="color:white">Martial Art Peek</a>
-              </div>
-              <div class="grid-item1" style="color:white">11/10/2021 at 9:35 pm</div>
-              <div class="grid-item1" style="color:white">This is fun</div>
-        
-              <div class="grid-item1" style="color:white">
-                <a href="./readcomic.html" style="color:white">I Came From The Game World</a>
-              </div>
-              <div class="grid-item1" style="color:white">11/10/2021 at 9:35 pm</div>
-              <div class="grid-item1" style="color:white">This is not fun</div>
-            </div>
-          </section>  -->
-        
+          </section>
+        </div>
         
         <div class = "profile tabShow">
           <form action="#" class="form">
@@ -187,8 +167,157 @@
           </form>
         
         </div>
-      </div>    
-  </section>
+
+        <div class = "followComics tabShow">
+          <section class="chapter">
+
+            <h2 class="list-title clearfix"> <br> Followed Comics </br></h2>
+        
+            <div class="grid-container">
+              <div class="grid-item2" style="color:#000">Comics Name</div>
+              <div class="grid-item2" style="color:#000">Recent Comics </div>
+              <div class="grid-item2" style="color:#000">Latest Chapter</div>
+        
+              <div class="grid-item2" style="color:#000">
+                <a href="../chapter.html" style="color:#000">Martial Art Peek</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 48</div>
+              <div class="grid-item2" style="color:#000">Chapter 50</div>
+        
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">I Came From The Game World</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 5</div>
+              <div class="grid-item2" style="color:#000">Chapter 28</div>
+
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">Great King Forgive Me</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 23</div>
+              <div class="grid-item2" style="color:#000">Chapter 50</div>
+
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">Fallen Evil</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 15</div>
+              <div class="grid-item2" style="color:#000">Chapter 48</div>
+
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">Jujutsu Kaisen</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 55</div>
+              <div class="grid-item2" style="color:#000">Chapter 98</div>
+            </div>
+          </section>
+        
+        </div>
+
+        <div class = "UploadComics tabShow">
+          <div class="comment">
+            <h3>Upload comics</h3>
+            <hr />
+            <textarea rows="5" placeholder="Describe yourself or your group editor. This is important for your comic's censorship." name="comment"></textarea>
+            <button class="submit-comment links">Register for Creator/Translator </button>
+            <section class="chapter">
+
+              <h2 class="list-title clearfix"> <br> Uploaded Comics </br></h2>
+          
+              <div class="grid-container">
+                <div class="grid-item2" style="color:#000">Comics Name</div>
+                <div class="grid-item2" style="color:#000">Recent Chapter </div>
+                <div class="grid-item2" style="color:#000">Views</div>
+          
+                <div class="grid-item2" style="color:#000">
+                  <a href="../chapter.html" style="color:#000">Martial Art Peek</a>
+                </div>
+                <div class="grid-item2" style="color:#000">Chapter 50</div>
+                <div class="grid-item2" style="color:#000">200000</div>
+          
+                <div class="grid-item2" style="color:#000">
+                  <a href="./readcomic.html" style="color:#000">I Came From The Game World</a>
+                </div>
+                <div class="grid-item2" style="color:#000">Chapter 15</div>
+                <div class="grid-item2" style="color:#000">N/A</div>
+  
+                <div class="grid-item2" style="color:#000">
+                  <a href="./readcomic.html" style="color:#000">Great King Forgive Me</a>
+                </div>
+                <div class="grid-item2" style="color:#000">Chapter 45</div>
+                <div class="grid-item2" style="color:#000">100000</div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class = "Notification tabShow">
+            <section class="chapter">
+
+              <h2 class="list-title clearfix"> <br> Notification </br></h2>
+          
+              <div class="grid-container2">
+                <div class="grid-item2" style="color:#000">Message</div>
+                <div class="grid-item2" style="color:#000">Time of Notification</div>
+          
+                <div class="grid-item2" style="color:#000">
+                  <a href="./readcomic.html" style="color:#000">Register Successfully<a>
+                </div>
+                <div class="grid-item2" style="color:#000">06/01/2022 8:00PM</div>
+          
+                <div class="grid-item2" style="color:#000">
+                  <a href="./readcomic.html" style="color:#000">Login Successfully<a>
+                </div>
+                <div class="grid-item2" style="color:#000">06/01/2022 10:00PM</div>
+  
+                <div class="grid-item2" style="color:#000">
+                  <a href="./readcomic.html" style="color:#000">Added "Martial Art Peek" to collection</a>
+                </div>
+                <div class="grid-item2" style="color:#000">12/01/2022 7:00AM</div>
+              </div>
+            </section>
+          </div>
+
+        <div class = "Comments tabShow">
+          <section class="chapter">
+
+            <h2 class="list-title clearfix"> <br> Comments Section </br></h2>
+        
+            <div class="grid-container">
+              <div class="grid-item2" style="color:#000">Comics Name</div>
+              <div class="grid-item2" style="color:#000">Latest Update </div>
+              <div class="grid-item2" style="color:#000">Comments</div>
+        
+              <div class="grid-item2" style="color:#000">
+                <a href="../chapter.html" style="color:#000">Martial Art Peek</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 50</div>
+              <div class="grid-item2" style="color:#000">The atmostphere is so intense right now.</div>
+        
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">I Came From The Game World</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 15</div>
+              <div class="grid-item2" style="color:#000">part 1: love is draining. love is hurting. love is ignoring</div>
+
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">Great King Forgive Me</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 45</div>
+              <div class="grid-item2" style="color:#000">Why he does that? It does not make any sense.</div>
+
+              <div class="grid-item2" style="color:#000">
+                <a href="./readcomic.html" style="color:#000">Fallen Evil</a>
+              </div>
+              <div class="grid-item2" style="color:#000">Chapter 25</div>
+              <div class="grid-item2" style="color:#000">My only exception…
+
+                “Balancing on breaking branches, telling me why love is sacred.”
+                
+              </div>
+            </div>
+          </section>
+        
+        </div>
+      </div>   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
@@ -205,8 +334,13 @@
     </script>  
     <script>
        $(".tab").click(function() {
+          console.log($(this).text);
           $(this).addClass("active").siblings().removeClass("active");
-        })
+        });
+
+        $(".exit").click(function() {
+          $(location).prop('href', "../index.html");
+        });
     </script>
   </body>
 </html>
