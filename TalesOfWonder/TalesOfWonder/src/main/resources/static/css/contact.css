@@ -1,0 +1,217 @@
+.container-fluid {
+    margin-top: 2%;
+    margin-bottom: 50%;
+}
+
+.hide {
+    transform: translateX(-9900px);
+}
+
+.our-team:hover+.hide {
+    -webkit-animation: fadein .5s linear forwards;
+    animation: fadein .5s linear forwards;
+}
+
+.our-team:not(:hover)+.hide {
+    -webkit-animation: fadeout .5s linear forwards;
+    animation: fadeout .5s linear forwards;
+}
+
+@-webkit-keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+
+    75% {
+        opacity: 0.75;
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+
+    75% {
+        opacity: 0.75;
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@-webkit-keyframes fadeout {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    25% {
+        opacity: 0.25;
+        transform: translateX(-100px);
+    }
+
+    75% {
+        opacity: 0.15;
+        transform: translateX(-900px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-9900px);
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    25% {
+        opacity: 0.25;
+        transform: translateX(-100px);
+    }
+
+    75% {
+        opacity: 0.15;
+        transform: translateX(-900px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-9900px);
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+
+    75% {
+        opacity: 0.75;
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.title2 {
+    padding-top: 1%;
+    text-align: center;
+    color: #8b2635;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.our-team h3,
+span,
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.our-team {
+    border: 1px solid #dedede;
+    text-align: center;
+    color: #8b2635;
+    overflow: hidden;
+    transition: all 0.3s ease 0s;
+    background: white;
+    margin-top: 6%;
+    border: solid #8b2635;
+}
+
+.our-team:hover {
+    background: #8b2635;
+    color: #fff;
+}
+
+.our-team .pic {
+    position: relative;
+}
+
+.our-team .pic img {
+    padding-top: 10%;
+
+    max-width: 200px;
+    max-height: 220px;
+    transition: all 0.3s ease 0s;
+}
+
+.our-team:hover .pic img {
+    transform: translateY(-20px);
+}
+
+.our-team .social {
+    width: 20%;
+    height: 100%;
+    background: #8b2635;
+    padding: 20px 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    transition: all 0.5s ease 0s;
+}
+
+.our-team:hover .social {
+    left: 0;
+}
+
+.our-team .social li {
+    display: block;
+}
+
+.our-team .social li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+
+.our-team .social li a:hover {
+    color: #ff9b19;
+}
+
+.our-team .team-content {
+    padding: 25px 0;
+}
+
+.our-team .title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.our-team .post {
+    display: block;
+    font-size: 15px;
+    padding: 0 8%;
+    text-transform: none;
+}
+
+@media only screen and (max-width: 990px) {
+    .our-team {
+        margin-bottom: 30px;
+    }
+}
