@@ -11,6 +11,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CommentRepository extends PagingAndSortingRepository<Comment,Integer> {
     @Query("SELECT u FROM Comment u Where u.user  = ?1")
@@ -21,4 +23,6 @@ public interface CommentRepository extends PagingAndSortingRepository<Comment,In
     public Page<Comment> findAllByComic(Comic comic, Pageable pageable);
     @Query("SELECT u FROM Comment u Where u.comic = ?1 and commentParent.commentParent = null")
     public Page<Comment> findAllByComicNoParent(Comic comic, Pageable pageable);
+    @Query("SELECT u FROM Comment u Where u.user = ?1  ORDER BY dateComment DESC")
+    public List<Comment> findAllByUser(User user);
 }

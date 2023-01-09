@@ -69,6 +69,22 @@ public class User {
         return id;
     }
 
+    public Set<Comic> getComicsPublish() {
+        return comicsPublish;
+    }
+
+    public void setComicsPublish(Set<Comic> comicsPublish) {
+        this.comicsPublish = comicsPublish;
+    }
+
+    public Set<Comic> getComicsFollow() {
+        return comicsFollow;
+    }
+
+    public void setComicsFollow(Set<Comic> comicsFollow) {
+        this.comicsFollow = comicsFollow;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -137,5 +153,12 @@ public class User {
     public User() {
         this.registerDate = new Date();
         this.enable = true;
+    }
+
+    public boolean unFollowComic(Comic comic) {
+        if (comicsFollow.contains(comic)==false)
+            return false;
+        comicsFollow.remove(comic);
+        return true;
     }
 }

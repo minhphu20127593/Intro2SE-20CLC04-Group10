@@ -329,7 +329,8 @@
                 <img src="./images/avatar1.png" alt="ddmuri">
                 <div class="comment-content vertical-center">
                     <textarea>[[${chapterComment.content}]]</textarea>
-                    <h4>[[${chapterComment.dateComment}]]</h4>
+                    <h4 th:if="${chapterComment.chapter == null}">[[${chapterComment.dateComment}]]</h4>
+                    <h4 th:if="${chapterComment.chapter != null}">[[${chapterComment.chapter.name}]] - [[${chapterComment.dateComment}]]</h4>
                 </div>
 
             </div>

@@ -3,6 +3,7 @@ package com.group10.TalesOfWonder.comment;
 import com.group10.TalesOfWonder.entity.Chapter;
 import com.group10.TalesOfWonder.entity.Comic;
 import com.group10.TalesOfWonder.entity.Comment;
+import com.group10.TalesOfWonder.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,5 +33,9 @@ public class CommentService {
     public Comment saveComment(Comment comment) {
         comment.setDateComment(new Date());
         return commentRepository.save(comment);
+    }
+
+    public List<Comment> getAllCommentOfUser(User user) {
+        return commentRepository.findAllByUser(user);
     }
 }
