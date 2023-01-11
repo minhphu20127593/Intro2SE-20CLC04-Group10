@@ -37,7 +37,7 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script>
         $(function () {
-            $("#header").load("[[@{./includes/header.html}]]");
+<!--            $("#header").load("[[@{./includes/header.html}]]");-->
      
             $("#contact").load("[[@{./includes/contact.html}]]");
             $("#footer").load("[[@{./includes/footer.html}]]");
@@ -81,7 +81,7 @@
     </script>
 </head>
 
-<div id="header" class=""></div>
+<div th:replace="navigationFragment :: menu"></div>
 <div id="body" class=" d-flex flex-column min-vh-100">
     <section class="home" id="home">
 
@@ -148,9 +148,9 @@
     <div class="old-comments">
         <th:block th:each="chapterComment:${comments}">
             <div class="comment-entry">
-                <img src="./images/avatar1.png" alt="ddmuri">
+                <img th:src="@{${chapterComment.user.getPhotosImagePath}}" alt="ddmuri">
                 <div class="comment-content vertical-center">
-                    <textarea>[[${chapterComment.content}]]</textarea>
+                    <textarea id="userComment">[[${chapterComment.content}]]</textarea>
                     <h4>[[${chapterComment.dateComment}]]</h4>
                 </div>
 

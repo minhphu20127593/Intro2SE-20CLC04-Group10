@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<meta charset="UTF-8">
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<body>
+
+<div th:fragment="menuMange">
+    <div id="sidebar" class="active">
+        <div class="sidebar-wrapper active">
+            <div class="sidebar-header position-relative">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="logo">
+                        <a th:href="@{/}"><img th:src="@{assets/images/logo/Talesofwonder.png}" alt="Logo"
+                                                  class="img-fluid"></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul class="menu">
+                    <li class="sidebar-title">Menu</li>
+
+                    <li class="sidebar-item  ">
+                        <a th:href="@{/dashboard}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-title">Admin</li>
+                    <li class="sidebar-item"  sec:authorize="hasAuthority('Admin')">
+                        <a th:href="@{/admin/approveComic}"   class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Approve Comic</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item" sec:authorize="hasAuthority('Admin')">
+                        <a th:href="@{/admin/approveCreator}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Approve Creator</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-title">Comic</li>
+
+
+                    <li class="sidebar-item">
+                        <a th:href="@{/comic/new_comic}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Add new Comic</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a th:href="@{/comic/listAll}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Mange Comic</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-title">Chapter</li>
+                    <li class="sidebar-item">
+                        <a th:href="@{/chapter/new_chapter}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Add new chapter</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:fragment="menu">
+    <script>
+    $('#search-box').on('keypress', function (e) {
+         if(e.which === 13){
+
+            $(this).attr("disabled", "disabled");
+            $('form').submit();
+            $(this).removeAttr("disabled");
+         }
+   });
+
+   </script>
+    <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+        <input type="submit">
+    </form>
+
+    <header class="header">
+        <img class="header-bg" th:src="@{/images/HeaderBg.png}" alt="TALES OF WONDER BG">
+
+        <div class="mini-bar">
+            <img class="main-logo" th:src="@{/images/TALES OF WONDER.svg}" alt="TALES OF WONDER">
+            <div class="search-bar">
+                <img th:src="@{/images/SearchBar.png}" width="50%" alt="Search">
+                <form th:action="@{/search}">
+                    <input name="keyword" type="search" id="search-box" placeholder="Search your comics here...">
+                </form>
+
+                <nav class="navbar nav2">
+                    <a  sec:authorize="isAnonymous()" th:href="@{/signup}">SIGN UP</a>
+                    <a  sec:authorize="isAnonymous()" th:href="@{/login}">LOGIN</a>
+                    <a  sec:authorize="isAuthenticated()" th:href="@{/login}">LOGOUT</a>
+                </nav>
+            </div>
+        </div>
+
+
+        <nav class="navbar m-3">
+            <a th:href="@{/}">HOME</a>
+            <a href="#about">HISTORY</a>
+            <a href="#menu">CATEGORY</a>
+            <a  sec:authorize="hasAuthority('Admin') or hasAuthority('Creator')" th:href="@{/comic/new_comic}">MANAGE</a>
+            <a href="./contact.html">HELP</a>
+            <a href="./about.html">ABOUT US</a>
+            <a  sec:authorize="isAuthenticated()" th:href="@{/dashboard}">ACCOUNT</a>
+        </nav>
+    </header>
+</div>
+</body>
+</html>

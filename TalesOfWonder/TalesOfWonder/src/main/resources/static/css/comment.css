@@ -49,6 +49,17 @@
     resize: none;
     overflow: auto;
 }
+.comment .old-comments form textarea {
+    margin-left: 20px;
+    font-size: 24px;
+    height: 50px;
+    font-weight: bold;
+    vertical-align: middle;
+    border: .1px dotted gray;
+    width: 90%;
+    resize: none;
+    overflow: auto;
+}
 
 .comment .old-comments h4 {
     margin-left: 20px;
@@ -98,6 +109,35 @@
 }
 
 .comment> textarea {
+    margin-top: 1%;
+    width: 100%;
+    font-size: large;
+    background-color:aliceblue;
+    box-shadow: #000;
+    -webkit-box-shadow: inset 2px 2px 2px 4px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 4px #dddddd;
+    box-shadow: 0 5px 7px 5px rgb(0 0 0 / 10%), 5px 2px 5px 0 rgb(0 0 0 / 13%) !important;
+    overflow: auto;
+    padding: 1%;
+    font-family: tahoma;
+    border: 1px solid #aaa;
+}
+.comment> form textarea {
+    margin-top: 1%;
+    width: 100%;
+    font-size: large;
+    background-color:aliceblue;
+    box-shadow: #000;
+    -webkit-box-shadow: inset 2px 2px 2px 4px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 4px #dddddd;
+    box-shadow: 0 5px 7px 5px rgb(0 0 0 / 10%), 5px 2px 5px 0 rgb(0 0 0 / 13%) !important;
+    overflow: auto;
+    padding: 1%;
+    font-family: tahoma;
+    border: 1px solid #aaa;
+}
+
+.comment>#userComment {
     margin-top: 1%;
     width: 100%;
     font-size: large;

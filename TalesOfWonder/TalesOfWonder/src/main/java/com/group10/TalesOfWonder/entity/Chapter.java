@@ -75,6 +75,10 @@ public class Chapter {
     public Comic getComic() {
         return comic;
     }
+
+    public void increaseCountView() {
+        this.countView++;
+    }
 }
 
 

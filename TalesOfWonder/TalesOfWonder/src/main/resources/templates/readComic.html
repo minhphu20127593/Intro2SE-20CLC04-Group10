@@ -21,7 +21,7 @@
             crossorigin="anonymous"></script>
     <script  type="text/javascript">
         $(function () {
-            $("#header").load("[[@{./includes/header.html}]]");
+<!--            $("#header").load("[[@{./includes/header.html}]]");-->
             $("#footer").load("[[@{./includes/footer.html}]]");
 
         });
@@ -148,7 +148,7 @@
             crossorigin="anonymous"></script>
 </head>
 <!--header section starts-->
-<div id="header" class=""></div>
+<div th:replace="navigationFragment :: menu"></div>
 <!--header section ends-->
 
 <body style="background-color: #011B29;">
@@ -326,7 +326,7 @@
     <div class="old-comments">
         <th:block th:each="chapterComment:${comments}">
             <div class="comment-entry">
-                <img src="./images/avatar1.png" alt="ddmuri">
+                <img th:src="@{${chapterComment.user.getPhotosImagePath}}" alt="ddmuri">
                 <div class="comment-content vertical-center">
                     <textarea>[[${chapterComment.content}]]</textarea>
                     <h4 th:if="${chapterComment.chapter == null}">[[${chapterComment.dateComment}]]</h4>

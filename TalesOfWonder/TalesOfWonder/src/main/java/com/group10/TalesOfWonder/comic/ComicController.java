@@ -79,6 +79,41 @@ public class ComicController {
         return "quanlytruyen";
     }
 
+    @GetMapping("/search")
+    public String search(Model model,@AuthenticationPrincipal QAUserDetails loggedUser,@Param("pageNum") String pageNumber, @Param("sortField") String sortField, @Param("sortDir")
+            String sortDir, @Param("keyword") String keyword) {
+        sortField = sortDir == null ? "lastModified" : sortField;
+        sortDir = sortDir == null ? "DESC" : sortDir;
+        int pageNum = 1;
+        if (pageNumber != null)
+            pageNum = Integer.parseInt(pageNumber);
+        Page<Comic> page = comicService.listByPage(pageNum,"lastModified","des",keyword);
+
+        List<Comic> comicsList = page.getContent();
+        Map<Integer,List<Chapter>> chaptersLatest = chapterService.getListChapterOfComics(comicsList);
+        long startCount = (pageNum - 1)* ComicService.pageSizeSmall + 1;
+        long endCount = startCount + ComicService.pageSizeSmall - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        String opsortDir = sortDir.equals("asc")?"des":"asc";
+        System.out.println(opsortDir);
+        System.out.println("Pagenum = " + pageNum);
+        System.out.println("Total elements = " + page.getTotalElements());
+        System.out.println("Total pages = " + page.getTotalPages());
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",pageNum);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("comics",comicsList);
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDir",sortDir);
+        model.addAttribute("opsortDir",opsortDir);
+        model.addAttribute("keyword",keyword);
+        model.addAttribute("chaptersLatest",chaptersLatest);
+        return "search";
+    }
+
     @PostMapping("/comic/save")
     public String saveComic(@ModelAttribute Comic comic, RedirectAttributes redirectAttributes,@RequestParam("image")MultipartFile multipartFile) throws IOException {
 

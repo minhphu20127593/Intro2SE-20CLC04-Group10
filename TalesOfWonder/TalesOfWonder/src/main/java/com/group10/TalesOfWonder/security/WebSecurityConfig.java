@@ -48,8 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().permitAll().and().rememberMe().key("abfkkAKkkcckckkckifk_3652").tokenValiditySeconds(7*24*60*60);
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+        ;
 //               http.csrf().disable();
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {

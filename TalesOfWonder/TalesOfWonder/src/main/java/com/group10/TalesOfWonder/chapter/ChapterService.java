@@ -55,4 +55,9 @@ public class ChapterService {
 
         return chapters;
     }
+
+    public void increaseChapterCountView(Chapter currentChapter) {
+        currentChapter.increaseCountView();
+        chapterRepository.save(currentChapter);
+    }
 }

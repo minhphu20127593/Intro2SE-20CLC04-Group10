@@ -32,7 +32,7 @@
             window.location.href=$(this).attr('href');
             })
         $(function () {
-            $("#header").load("[[@{./includes/header.html}]]");
+<!--            $("#header").load("[[@{./includes/header.html}]]");-->
             $("#body").load("[[@{./includes/body.html}]]");
             $("#contact").load("[[@{./includes/contact.html}]]");
             $("#footer").load("[[@{./includes/footer.html}]]");
@@ -41,7 +41,7 @@
     </script>
 </head>
 
-<div id="header" class=""></div>
+<div th:replace="navigationFragment :: menu"></div>
 <div id="body" class=" d-flex flex-column min-vh-100"></div>
 
 <section class="menu" id="menu">

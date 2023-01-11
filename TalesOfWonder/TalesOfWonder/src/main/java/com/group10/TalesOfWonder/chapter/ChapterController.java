@@ -96,6 +96,7 @@ public class ChapterController {
         List<Image> images = imageService.getAllImageOfChapter(currentChapter);
         Page<Comment> page = commentService.getAllCommentOfChapter(currentChapter,commentpage);
         List<Comment> comments = page.getContent();
+        chapterService.increaseChapterCountView(currentChapter);
         long startCount = (1 - 1)* ComicService.pageSize + 1;
         long endCount = startCount + ComicService.pageSize - 1;
         if (endCount > page.getTotalElements())
