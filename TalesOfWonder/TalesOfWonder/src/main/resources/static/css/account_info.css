@@ -1,0 +1,334 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(22, 5, 106);
+}
+.container {
+  position: relative;
+  width: 1100px;
+  height: 950px;
+  background: #fff;
+  margin: 0 auto;
+  margin-top:10%;
+  padding: 120px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+.container header {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+.container .form {
+  margin-top: -15px;
+}
+
+.leftbox {
+  float:left;
+  top:-5%;
+  left:5%;
+  position: absolute;
+  width: 20%;
+  height: 110%;
+  background:rgb(22, 5, 106);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border: .1em solid #fff;
+}
+
+nav{
+  width: 20% !important;
+}
+
+nav a{
+  list-style: none;
+  padding: 35px;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.1em;
+  display: block;
+  transition: all .3s ease-in-out;
+}
+
+nav a:hover{
+  color: #fff;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+nav a:first-child{
+  margin-top: 7px;
+}
+
+nav a.active{
+  color: #fff;
+}
+
+h1 {
+  display: flex;
+  font-size: 200;
+}
+.rightbox {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background: #fff;
+  margin: -100px 190px;
+  margin-top:-12%;
+  padding:31px;
+}
+
+.tabShow {
+  transition: all .5s ease-in;
+  width: 80%;
+}
+
+.tabShow {
+  display: none;
+}
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.input-box label {
+  color: #333;
+}
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 45px;
+  width: 700px;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
+.form .gender-box {
+  margin-top: 20px;
+  display: flex;
+}
+.gender-box h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.form :where(.gender-option, .gender) {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
+}
+.form .gender {
+  column-gap: 5px;
+}
+.gender input {
+  accent-color: rgb(130, 106, 251);
+}
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
+}
+.gender label {
+  color: #707070;
+  justify-content: space-between;
+}
+.address :where(input, .select-box) {
+  margin-top: 15px;
+}
+.select-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+}
+.form button {
+  height: 55px;
+  width: 140%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(22, 5, 106);
+}
+.form button:hover {
+  background: rgb(22, 5, 106);
+}
+
+.chapter h2{
+  font-size: 1.5rem;
+  color: #000;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+}
+
+.chapter .grid-container {
+  display: grid;
+  grid-template-columns: 350px 180px 180px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.chapter .grid-container2 {
+  display: grid;
+  grid-template-columns: 400px 300px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.chapter .grid-item {
+  background-color: #fff;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.chapter .grid-item1{
+  background-color: #fff;
+  padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.chapter .grid-item2{
+  background-color: #fff;
+  padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.comment .links {
+  padding: 0.7rem 1rem;
+  color: #000;
+  border: var(--border);
+  font-size: 1.2rem;
+  margin-left: 0%;
+}
+
+.comment .links:hover {
+  background: var(--main-color);
+}
+
+.comment .submit-comment {
+  margin-top: 10%;
+}
+
+.comment .old-comments {
+  margin-top: 2%;
+  height: fit-content;
+  display: grid;
+  margin-bottom: 5%;
+}
+
+.comment .comment-entry {
+  position: relative;
+  margin-top: 3%;
+}
+
+.comment .old-comments img {
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.comment .comment-content {
+  width: 100%;
+}
+
+.comment .old-comments textarea {
+  margin-left: 20px;
+  font-size: 24px;
+  height: 50px;
+  font-weight: bold;
+  vertical-align: middle;
+  border: .1px dotted gray;
+  width: 90%;
+  resize: none;
+  overflow: auto;
+}
+
+.comment .old-comments h4 {
+  margin-left: 20px;
+  color:var(--main-color);
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  margin-left: 100px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.comment {
+  margin-left: -8%;
+  background-color: #fff;
+  width: 86%;
+  padding: 2%;
+}
+
+.comment> textarea {
+  margin-top: 1%;
+  width: 532px;
+  height:119px;
+  font-size: large;
+  background-color:aliceblue;
+  box-shadow: #000;
+  -webkit-box-shadow: inset 2px 2px 2px 4px #dddddd;
+  -moz-box-shadow: inset 2px 2px 2px 4px #dddddd;
+  box-shadow: 0 5px 7px 5px rgb(0 0 0 / 10%), 5px 2px 5px 0 rgb(0 0 0 / 13%) !important;
+  overflow: auto;
+  padding: 1%;
+  font-family: tahoma;
+  border: 1px solid #aaa;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #000;
+  margin: 1em 0;
+  padding: 0;
+  width: 99%;
+}
+
+
+/*Responsive*/
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}

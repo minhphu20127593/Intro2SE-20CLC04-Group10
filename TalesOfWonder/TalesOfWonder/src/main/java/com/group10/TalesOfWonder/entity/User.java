@@ -32,7 +32,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "comic_id")
     )
     public Set<Comic> comicsPublish = new HashSet<>();
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_comicsFollow",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -59,8 +59,30 @@ public class User {
 
         return "/user-photos/" + this.id + "/" + this.photos;
     }
+    public void followComic(Comic comic) {
+        comicsFollow.add(comic);
+    }
+    public boolean checkIfFollowComic(Comic comic) {
+        return comicsFollow.contains(comic);
+    }
     public Integer getId() {
         return id;
+    }
+
+    public Set<Comic> getComicsPublish() {
+        return comicsPublish;
+    }
+
+    public void setComicsPublish(Set<Comic> comicsPublish) {
+        this.comicsPublish = comicsPublish;
+    }
+
+    public Set<Comic> getComicsFollow() {
+        return comicsFollow;
+    }
+
+    public void setComicsFollow(Set<Comic> comicsFollow) {
+        this.comicsFollow = comicsFollow;
     }
 
     public String getEmail() {
@@ -131,5 +153,12 @@ public class User {
     public User() {
         this.registerDate = new Date();
         this.enable = true;
+    }
+
+    public boolean unFollowComic(Comic comic) {
+        if (comicsFollow.contains(comic)==false)
+            return false;
+        comicsFollow.remove(comic);
+        return true;
     }
 }

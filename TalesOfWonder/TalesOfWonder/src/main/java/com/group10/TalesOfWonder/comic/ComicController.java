@@ -3,10 +3,8 @@ package com.group10.TalesOfWonder.comic;
 import com.group10.TalesOfWonder.FileUploadUtil;
 import com.group10.TalesOfWonder.chapter.ChapterRepository;
 import com.group10.TalesOfWonder.chapter.ChapterService;
-import com.group10.TalesOfWonder.entity.Category;
-import com.group10.TalesOfWonder.entity.Chapter;
-import com.group10.TalesOfWonder.entity.Comic;
-import com.group10.TalesOfWonder.entity.User;
+import com.group10.TalesOfWonder.comment.CommentService;
+import com.group10.TalesOfWonder.entity.*;
 import com.group10.TalesOfWonder.security.QAUserDetails;
 import com.group10.TalesOfWonder.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,8 @@ import java.util.Map;
 
 @Controller
 public class ComicController {
+    @Autowired
+    public CommentService commentService;
     @Autowired
     public ComicService comicService;
     @Autowired
@@ -133,7 +133,53 @@ public class ComicController {
         model.addAttribute("listComicsMostView",comicsMostView);
         return "index";
     }
+    @GetMapping("/admin/approveComic")
+    public String approveComic(Model model) {
+        List<Comic> comics = comicService.findAllComicWaitForApprove();
+        model.addAttribute("comics",comics);
+        return "approveComic";
+    }
 
+    @GetMapping("/comic/activecomic/{comicId}")
+    public String activeComic(Model model,@PathVariable("comicId") int comicId) {
+        Comic comic = comicService.getComicByID(comicId);
+        comic.setEnable(true);
+        comicService.save(comic);
+        return "redirect:/admin/approveComic";
+    }
+    @GetMapping("/comic/deleteComic/{comicId}")
+    public String deleteComic(@PathVariable("comicId") int comicId) {
+        boolean success = comicService.deleteComic(comicId);
+        return  "redirect:/admin/approveComic";
+    }
+    @GetMapping("/readComic")
+    public String readComic(@Param("comicId") int comicId,@Param("page") String commentPage,Model model) {
+        Comic comic = comicService.getComicByID(comicId);
+        int avgStar = comicService.getAVGStar(comic);
+        List<Chapter> chapters = chapterService.getListChapterOfAComic(comic);
+        Comment comment = new Comment();
+        comment.setComic(comic);
+        int commentpage = 1;
+        if (commentPage != null)
+            commentpage = Integer.parseInt(commentPage);
+        comicService.increaseCountView(comic);
+        Page<Comment> page = commentService.getAllCommentOfComic(comic,commentpage);
+        List<Comment> comments = page.getContent();
+        long startCount = (1 - 1)* ComicService.pageSize + 1;
+        long endCount = startCount + ComicService.pageSize - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        model.addAttribute("comments",comments);
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",commentpage);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("comment",comment);
+        model.addAttribute("chapters",chapters);
+        model.addAttribute("comic",comic);
+        return "readComic";
+    }
 //    @GetMapping("/{pageNum}")
 //    public String listByPage(@PathVariable(name = "pageNum") int pageNum, @Param("sortField") String sortField, @Param("sortDir")
 //            String sortDir, Model model, @Param("keyword") String keyword) {

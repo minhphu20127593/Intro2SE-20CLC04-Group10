@@ -6,6 +6,7 @@ import com.group10.TalesOfWonder.comment.CommentService;
 import com.group10.TalesOfWonder.entity.*;
 import com.group10.TalesOfWonder.image.ImageService;
 import com.group10.TalesOfWonder.security.QAUserDetails;
+import com.group10.TalesOfWonder.user.MessageService;
 import com.group10.TalesOfWonder.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,8 @@ public class ChapterController {
     public ComicService comicService;
     @Autowired
     public ImageService imageService;
+    @Autowired
+    public MessageService messageService;
     @GetMapping("/chapter/new_chapter")
     public String newComic(Model model,@AuthenticationPrincipal QAUserDetails loggedUser) {
         String email = loggedUser.getUsername();
@@ -50,7 +53,7 @@ public class ChapterController {
     }
 
     @PostMapping("/chapter/save")
-    public String saveComic(@ModelAttribute Chapter chapter, RedirectAttributes redirectAttributes, @RequestParam("files") MultipartFile[] multipartFiles) throws IOException {
+    public String saveComic(Model model,@ModelAttribute Chapter chapter, RedirectAttributes redirectAttributes, @RequestParam("files") MultipartFile[] multipartFiles) throws IOException {
         int count = 0;
         Comic comic = comicService.getComicByID(chapter.getComic().getId());
         chapter.setComic(comic);
@@ -67,8 +70,10 @@ public class ChapterController {
             count++;
         }
         imageService.saveAllImage(images);
+        if (chapterSave.isEnable())
+            messageService.sendMessageWhenNewChapter(chapterSave);
         redirectAttributes.addFlashAttribute("message","User Comic successfully");
-        return "redirect:/chapters";
+        return listAllChapter(model,chapter.getComic().getId(),"1",null);
     }
     @GetMapping("/readChapter")
     public String readChapter(Model model,@Param("comicID") int comicID,@Param("chapterID") int chapterID,@Param("commentPage") String commentPage) {
@@ -78,9 +83,9 @@ public class ChapterController {
         int curindex = chapters.indexOf(currentChapter);
         Chapter prev = null,next = null;
         if (curindex!=0)
-            prev = chapters.get(curindex-1);
+            next = chapters.get(curindex-1);
         if (curindex<chapters.size()-1)
-            next = chapters.get(curindex+1);
+            prev = chapters.get(curindex+1);
         Comment comment = new Comment();
         comment.setComic(comic);
         comment.setChapter(currentChapter);
@@ -111,5 +116,25 @@ public class ChapterController {
         model.addAttribute("comic",comic);
         return "readChapter";
     }
-
+    @GetMapping("/chapter/{comicID}/listAll")
+    public String listAllChapter(Model model,@PathVariable("comicID") int comicID,@Param("chapterPage") String chapterPage,@Param("keyword") String keyword) {
+        Comic comic = comicService.getComicByID(comicID);
+        model.addAttribute("comic",comic);
+        int numpage = 1;
+        if (chapterPage!=null)
+            numpage = Integer.parseInt(chapterPage);
+        Page<Chapter> page = chapterService.listByPageOfChapter(numpage,"dateModified","des",keyword,comic);
+        List<Chapter> chapters = page.getContent();
+        long startCount = (1 - 1)* ComicService.pageSize + 1;
+        long endCount = startCount + ComicService.pageSize - 1;
+        if (endCount > page.getTotalElements())
+            endCount = page.getTotalElements();
+        model.addAttribute("chapters",chapters);
+        model.addAttribute("startCount",startCount);
+        model.addAttribute("endCount",endCount);
+        model.addAttribute("currentPage",1);
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("totalPages",page.getTotalPages());
+        return "quanlychapter";
+    }
 }
